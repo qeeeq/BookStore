@@ -1,0 +1,29 @@
+[33mcommit ad8126b37fc2b81e11a4a4c9b80c30283e348240[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: qeeeeeq <qeeeeeq@gmail.com>
+Date:   Fri Jul 10 22:59:12 2020 +0300
+
+    add category
+
+[33mcommit 5df43b8385cf224241777ad788ccff23ab46364a[m
+Author: qeeeeeq <qeeeeeq@gmail.com>
+Date:   Fri Jul 10 22:30:15 2020 +0300
+
+    add ActiveAdmin
+
+[33mcommit 380db743ef59c49821bd63ac3ab9ead2afe3ca0b[m
+Author: qeeeq <qeeeeeq@gmail.com>
+Date:   Fri Jul 10 15:43:58 2020 +0300
+
+    add_discription
+
+[33mcommit b7dd2ad57c8731fa5aa991298f97511714444241[m
+Author: qeeeeeq <qeeeeeq@gmail.com>
+Date:   Thu Jul 9 22:31:18 2020 +0300
+
+    add books
+
+[33mcommit 9921557db92fd3f2d4c4a0908f6ce0cef953ad6f[m
+Author: qeeeeeq <qeeeeeq@gmail.com>
+Date:   Thu Jul 9 20:45:25 2020 +0300
+
+    init

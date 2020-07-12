@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_144831) do
+ActiveRecord::Schema.define(version: 2020_07_12_003301) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -38,15 +38,23 @@ ActiveRecord::Schema.define(version: 2020_07_11_144831) do
     t.string "title"
     t.decimal "price"
     t.integer "books_in_stock"
-    t.integer "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description"
     t.integer "category_id"
+    t.integer "rating_id"
+    t.integer "author_id"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.text "review"
+    t.integer "rating_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

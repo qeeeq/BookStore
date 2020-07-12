@@ -2,8 +2,8 @@
 
 one:
   review: MyText
-  rating: 
+  rating_number: 1
 
 two:
   review: MyText
-  rating: 
+  rating_number: 1

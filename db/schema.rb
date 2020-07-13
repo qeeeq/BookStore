@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_164627) do
     t.date "completed_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status"
+    t.string "status", default: "in progress"
   end
 
   create_table "ratings", force: :cascade do |t|

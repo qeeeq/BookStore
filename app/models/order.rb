@@ -4,7 +4,7 @@ class Order < ApplicationRecord
 	validates :status, presence: true
 	
 	belongs_to :customer
-	# belongs_to :credit_card
+	belongs_to :credit_card
 	has_many :order_items
 	# has_one :billing_address
 	# has_one :shipping_address

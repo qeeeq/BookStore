@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_13_160017) do
+ActiveRecord::Schema.define(version: 2020_07_13_164627) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2020_07_13_160017) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "address"
+    t.integer "zipcode"
+    t.string "city"
+    t.string "phone"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "authors", force: :cascade do |t|
@@ -48,6 +58,23 @@ ActiveRecord::Schema.define(version: 2020_07_13_160017) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.integer "number"
+    t.integer "CVV"
+    t.integer "expiration_month"
+    t.integer "expiration_year"
+    t.string "firstname"
+    t.string "lastname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

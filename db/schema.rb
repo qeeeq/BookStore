@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_13_164627) do
+ActiveRecord::Schema.define(version: 2020_07_14_183627) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_164627) do
     t.string "lastname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_164627) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "book_id"
+    t.integer "credit_card_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -101,7 +103,9 @@ ActiveRecord::Schema.define(version: 2020_07_13_164627) do
     t.date "completed_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status", default: "in progress"
+    t.integer "customer_id"
+    t.integer "credit_card_id"
+    t.integer "status", default: 0
   end
 
   create_table "ratings", force: :cascade do |t|

@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_021607) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "billing_addresses", force: :cascade do |t|
+    t.integer "address_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.decimal "price"
@@ -59,6 +65,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_021607) do
 
   create_table "categories", force: :cascade do |t|
     t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -82,6 +94,7 @@ ActiveRecord::Schema.define(version: 2020_07_17_021607) do
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "book_id"
     t.integer "credit_card_id"
   end
 
@@ -99,9 +112,9 @@ ActiveRecord::Schema.define(version: 2020_07_17_021607) do
     t.date "completed_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "status", default: "in progress"
     t.integer "customer_id"
     t.integer "credit_card_id"
+    t.integer "status", default: 0
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -111,6 +124,12 @@ ActiveRecord::Schema.define(version: 2020_07_17_021607) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "customer_id"
     t.integer "book_id"
+  end
+
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.integer "address_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

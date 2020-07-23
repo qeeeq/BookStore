@@ -278,12 +278,14 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  autoprefixer-rails
   bootsnap (>= 1.4.2)
   bootstrap (~> 4.5.0)
   byebug
   capybara (>= 2.15)
   country_select (~> 4.0)
   jbuilder (~> 2.7)
+  jquery-rails
   listen (~> 3.2)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)

@@ -5,7 +5,37 @@ ActiveAdmin.register Book do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :title, :price, :books_in_stock, :description, :author_id, :category_id
+
+
+  # permit_params :title, :price, :books_in_stock, :description, :author_id, :category_id, :image
+
+
+
+  index do
+    column :title
+    column :price
+    column :books_in_stock
+    column :author_id
+    column :category_id
+    column :image
+    column :description
+ end
+
+
+
+ #  index do
+ #    column :one
+ #    column :two
+ #    column :three
+ #    column :name
+ #    column :title
+ #    column :pages
+ #    column :description do 
+ #      raw "<a class='view_description button'>View Description</a>"
+ #    end
+ # end
+
+
   #
   # or
   #

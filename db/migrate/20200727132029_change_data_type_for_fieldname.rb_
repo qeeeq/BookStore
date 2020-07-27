@@ -1,8 +1,0 @@
-class ChangeDataTypeForFieldname < ActiveRecord::Migration[6.0]
-  def change
-	  change_table :customers do |t|
-	  	t.remove :email
-	  	t.remove :password
-		end
-  end
-end

@@ -11,17 +11,45 @@ ActiveAdmin.register Book do
 
 
 
-  # index do
-  #   column :title
-  #   column :price
-  #   column :books_in_stock
-  #   column :author_id
-  #   column :category_id
-  #   column :image
-  #   column :description
-  # end
+  form do |f|
+    input :author
+    input :category
+    input :image, as: :file
+    input :title
+    input :price
+    input :books_in_stock
+    input :description
+    actions
+  end
 
+  index do
+    column :title
+    column :price
+    column :books_in_stock
+    column :author
+    column :category
+    column :image do |book|
+      image_tag url_for(book.image), width: 150
+    end
+    column :description
 
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :title
+      row :price
+      row :books_in_stock
+      row :author
+      row :category
+      row :image do |book|
+        image_tag url_for(book.image), width: 250
+      end
+    end
+  end
+    
+  
 
  #  index do
  #    column :one

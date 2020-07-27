@@ -7,19 +7,19 @@ ActiveAdmin.register Book do
   #
 
 
-  # permit_params :title, :price, :books_in_stock, :description, :author_id, :category_id, :image
+  permit_params :title, :price, :books_in_stock, :description, :author_id, :category_id, :image
 
 
 
-  index do
-    column :title
-    column :price
-    column :books_in_stock
-    column :author_id
-    column :category_id
-    column :image
-    column :description
- end
+  # index do
+  #   column :title
+  #   column :price
+  #   column :books_in_stock
+  #   column :author_id
+  #   column :category_id
+  #   column :image
+  #   column :description
+  # end
 
 
 

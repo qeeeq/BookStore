@@ -3,19 +3,14 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Price</th>
-      <th scope="col">Books in stock</th>
-      <th scope="col">Descr</th>
+      <th scope="col"><%= link_to 'Books', books_path %></th>
+      <th scope="col"><%= link_to 'New Book', new_book_path %></th>
+      <th scope="col"><%= link_to 'Back to root_path', root_path %></th>
+      <th scope="col">link_to</th>
      
     </tr>
   </thead>
 </table>
-
-<%= link_to 'New Book', new_book_path %>
-<p></p>
-<%= link_to 'Back', books_path %>
-
 
 
     
@@ -25,8 +20,11 @@
         <% @books.each do |book| %>
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title><%= book.title %></title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= book.title %></text></svg>
-              <div class="card-body"><%= image_tag "https://editus.ru/img/services/verstka/cover_3.jpg" %>
+              <svg class="bd-placeholder-img card-img-top" width="100%" height="50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title><%= book.title %></title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= book.title %></text></svg>
+              <div class="card-body">
+                <div style = "width:300px; height:auto">
+                  <%= image_tag "https://editus.ru/img/services/verstka/cover_3.jpg", style:'width:100%'%>
+                </div>
                 <p class="card-text"><%= book.description %></p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">

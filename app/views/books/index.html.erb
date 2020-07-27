@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<%= current_customer.id %>
+
 
 <table class="table">
   <thead class="thead-dark">
@@ -45,6 +45,30 @@
   </div>
 
 
+<% if customer_signed_in? %>
+<span>Hello, <%= current_customer.email %></span>
+<%= link_to 'destroy_customer', destroy_customer_session_path, :method => :delete %>
+<%= link_to 'edit_customer', edit_customer_registration_path %>
+<%= link_to('Logout', destroy_customer_session_path, method: :delete) %>
+
+<% else %>
+<%= link_to 'signed in', new_customer_session_path %><%= link_to 'new_customer_registration', new_customer_registration_path %>
+<% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+
+
+
+
+
+<% if false %>
+  <thead class="thead-dark">
+   <tr>
+    <th scope="col">Current customer id: <%= current_customer.id %></th>
+     </tr>
+  </thead>
+<% end %>
 
 
 

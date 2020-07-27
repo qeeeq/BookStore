@@ -49,7 +49,6 @@ ActiveAdmin.register Book do
     end
   end
     
-  
 
  #  index do
  #    column :one

@@ -31,6 +31,7 @@ gem 'country_select', '~> 4.0'
 gem 'jquery-rails'
 gem "autoprefixer-rails"
 gem 'bootstrap', '~> 4.5.0'
+gem 'devise'
 
 
 group :development, :test do

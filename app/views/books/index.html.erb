@@ -1,6 +1,4 @@
-
-
-    <header>
+<header>
       <div class="collapse bg-dark" id="navbarHeader">
         <div class="container">
           <div class="row">
@@ -30,26 +28,35 @@
           </button>
         </div>
       </div>
-    </header>
+</header>
 
 
 
 
+<main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Books example</h1>
+          <p class="lead text-muted">Something short and leading about the collection bla-bla.</p>
+          <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </section>
 
 
-
-
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col"><%= link_to 'Books', books_path %></th>
-      <th scope="col"><%= link_to 'New Book', new_book_path %></th>
-      <th scope="col"><%= link_to 'Back to root_path', root_path %></th>
-      <th scope="col">link_to</th>
-    </tr>
-  </thead>
-</table>
-
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"><%= link_to 'Books', books_path %></th>
+        <th scope="col"><%= link_to 'New Book', new_book_path %></th>
+        <th scope="col"><%= link_to 'Back to root_path', root_path %></th>
+        <th scope="col">link_to</th>
+      </tr>
+    </thead>
+  </table>
 
 
   <div class="album py-5 bg-light">
@@ -82,16 +89,16 @@
   </div>
 
 
+  <div>
+  <% if customer_signed_in? %>
+      <span>Hi, <%= current_customer.email %></span>
+      <%= link_to 'Logout ', destroy_customer_session_path, :method => :get, data: { confirm: 'Are you sure?' } %>
+  <% else %>
+      <%= link_to 'Signed in', new_customer_session_path %> <%= link_to 'Register now', new_customer_registration_path %>
+  <% end %>
+  </div>
 
-<div>
-<% if customer_signed_in? %>
-    <span>Hi, <%= current_customer.email %></span>
-    <%= link_to 'Logout ', destroy_customer_session_path, :method => :get, data: { confirm: 'Are you sure?' } %>
-<% else %>
-    <%= link_to 'Signed in', new_customer_session_path %> <%= link_to 'Register now', new_customer_registration_path %>
-<% end %>
-</div>
-
+</main>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>

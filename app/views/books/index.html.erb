@@ -1,4 +1,42 @@
-<p id="notice"><%= notice %></p>
+
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Album</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+
+
+
+
 
 
 <table class="table">
@@ -8,13 +46,12 @@
       <th scope="col"><%= link_to 'New Book', new_book_path %></th>
       <th scope="col"><%= link_to 'Back to root_path', root_path %></th>
       <th scope="col">link_to</th>
-     
     </tr>
   </thead>
 </table>
 
 
-    
+
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
@@ -45,32 +82,16 @@
   </div>
 
 
-<% if customer_signed_in? %>
-<span>Hello, <%= current_customer.email %></span>
-<%= link_to 'destroy_customer', destroy_customer_session_path, :method => :delete %>
-<%= link_to 'edit_customer', edit_customer_registration_path %>
-<%= link_to('Logout', destroy_customer_session_path, method: :delete) %>
 
+<div>
+<% if customer_signed_in? %>
+    <span>Hi, <%= current_customer.email %></span>
+    <%= link_to 'Logout ', destroy_customer_session_path, :method => :get, data: { confirm: 'Are you sure?' } %>
 <% else %>
-<%= link_to 'signed in', new_customer_session_path %><%= link_to 'new_customer_registration', new_customer_registration_path %>
+    <%= link_to 'Signed in', new_customer_session_path %> <%= link_to 'Register now', new_customer_registration_path %>
 <% end %>
+</div>
+
+
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-
-
-
-
-
-
-<% if false %>
-  <thead class="thead-dark">
-   <tr>
-    <th scope="col">Current customer id: <%= current_customer.id %></th>
-     </tr>
-  </thead>
-<% end %>
-
-
-
- 
- 

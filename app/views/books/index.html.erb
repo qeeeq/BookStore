@@ -86,7 +86,7 @@
   <div>
   <% if customer_signed_in? %>
       <span>Hi, <%= current_customer.email %></span>
-      <%= link_to 'Logout ', destroy_customer_session_path, :method => :get, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Logout ', destroy_customer_session_path, :method => :delete, data: { confirm: 'Are you sure?' } %>
   <% else %>
       <%= link_to 'Signed in', new_customer_session_path %> <%= link_to 'Register now', new_customer_registration_path %>
   <% end %>

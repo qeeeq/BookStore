@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-	root "books#index"
-	get 'index', to: 'books#index'
   devise_for :customers
+  root "books#index"
   ActiveAdmin.routes(self)
   resources :books
   resources :authors

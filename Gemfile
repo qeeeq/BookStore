@@ -32,6 +32,7 @@ gem 'jquery-rails'
 gem "autoprefixer-rails"
 gem 'bootstrap', '~> 4.5.0'
 gem 'devise'
+gem 'simple_form'
 
 
 group :development, :test do

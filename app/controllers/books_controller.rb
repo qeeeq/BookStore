@@ -4,9 +4,32 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
+    # @books = Book.all
+    # @books = @books.where(title: params[:q][:name]) if jjjj
+    # @books = @books.where("title LIKE ?", "%#{q}%") 
+    # @books = @books.where(arel_table[:title].matches("%#{search}%"))
+
+
     @books = Book.all
-    @books = @books.where(title: params[:q][:name]) if jjjj
-    @books = @books.where("name LIKE ?", "%#{value_for_search}%") 
+    
+    @search = params["search"]
+    if @search.present?
+      @name = @search["title"]
+      @books = @books.where("title LIKE ?", "%#{@name}%")
+    end
+
+
+# пример
+#   def index
+#     @cocktails = Cocktail.all
+#     @search = params["search"]
+#     if @search.present?
+#       @name = @search["name"]
+#       @cocktails = Cocktail.where(name: @name)
+#     end
+#   end
+
+
   end
 
   # GET /books/1

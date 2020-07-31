@@ -10,12 +10,23 @@ class BooksController < ApplicationController
     # @books = @books.where(arel_table[:title].matches("%#{search}%"))
 
     @books = Book.all
-    
     @search = params["search"]
+
     if @search.present?
       @name = @search["title"]
       @books = @books.where("title LIKE ?", "%#{@name}%")
     end
+    
+    # @books = @books.where("title LIKE ?", "%#{@name}%").joins(:authors).where("title LIKE ?", "%#{@name}%"))
+
+
+    # if @search.present?
+    #   @name = @search["title"]
+    #   @books = book.author.where(:lastname => @name).joins(:books).where("book.title = ?", @name)
+    # end
+
+    # @books = @books.where(:title => @name).joins(:authors).where("authors.lastname = ?", @name)
+
   end
 
   # GET /books/1

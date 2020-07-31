@@ -9,7 +9,6 @@ class BooksController < ApplicationController
     # @books = @books.where("title LIKE ?", "%#{q}%") 
     # @books = @books.where(arel_table[:title].matches("%#{search}%"))
 
-
     @books = Book.all
     
     @search = params["search"]
@@ -17,19 +16,6 @@ class BooksController < ApplicationController
       @name = @search["title"]
       @books = @books.where("title LIKE ?", "%#{@name}%")
     end
-
-
-# пример
-#   def index
-#     @cocktails = Cocktail.all
-#     @search = params["search"]
-#     if @search.present?
-#       @name = @search["name"]
-#       @cocktails = Cocktail.where(name: @name)
-#     end
-#   end
-
-
   end
 
   # GET /books/1

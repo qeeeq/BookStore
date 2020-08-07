@@ -1,47 +1,82 @@
 <header>
-      <div class="navbar navbar-dark bg-dark box-shadow">
-        <div class="container d-flex justify-content-between">
-          <a href="#" class="navbar-brand d-flex align-items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-            <strong>Album</strong>
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
-      </div>
+
+
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Navigate
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">
+      <%= link_to root_path do%>
+        <button type="button" class="btn btn-primary my-2">Index</button>
+      <%end%>
+    </a>
+      <a class="dropdown-item" href="#">
+      <%= link_to "/books" do%>
+        <button type="button" class="btn btn-primary my-2">Books</button>
+      <%end%>
+    </a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+
+        </li>
+      </ul>
+      <form class="form-inline mt-2 mt-md-0"> 
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
 </header>
 
-<main role="main">
 
+
+
+
+
+
+<main role="main">
 
 
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">Books example</h1>
           <p class="lead text-muted">Something short and leading about the collection bla-bla.</p>
-          <p>
-            <%= link_to root_path do%>
-              <button type="button" class="btn btn-primary my-2">Index</button>
-            <%end%>
-            <%= link_to books_path do%>
-              <button type="button" class="btn btn-primary my-2">Books</button>
-            <%end%>
-          </p>
 
-
-          <%= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-            <%= f.input :title, input_html: {value: ""} %>   
-            <%= f.submit "Search books", class: "btn btn-primary" %>
-          <% end %>
-
-
+      <%= form_with(url: root_path, method: "get", local: true) do %>
+        <%= label_tag(:q, "Search for:") %>
+        <%= text_field_tag :q, params[:q]%>
+        <%= submit_tag "Search", name: nil %>
+      <% end %>
 
         </div>
       </section>
 
 
-
+<div class="input-group">
+  <%= form_tag(root_path, :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:q], placeholder: "Search Posts", class: 'form-control mr-sm-2' %>
+    <span class="input-group-btn">
+      <%= submit_tag "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
+    </span>
+  <% end %>
+</div>
 
   <div>
     <% if customer_signed_in? %>
@@ -59,6 +94,8 @@
       <% end%>
     <% end %>
   </div>
+
+  
 
   <div class="album py-5 bg-light">
     <div class="container">
@@ -94,6 +131,9 @@
       </div>
     </div>
   </div>
+
+
+
 
 </main>
 

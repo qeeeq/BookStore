@@ -5,17 +5,30 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     # @books = Book.all
-    # @books = @books.where(title: params[:q][:name]) if jjjj
-    # @books = @books.where("title LIKE ?", "%#{q}%") 
-    # @books = @books.where(arel_table[:title].matches("%#{search}%"))
+    # @books = @books.where(title: params[:q]) if params[:q].present?
+    # @books = @books.where("title LIKE ?", "#{params[:q]}") if params[:q].present?
 
-    @books = Book.all
-    @search = params["search"]
 
-    if @search.present?
-      @name = @search["title"]
-      @books = @books.where("title LIKE ?", "%#{@name}%")
+    if params[:q].present?
+      @books = Book.where("title LIKE ?", "%#{params[:q]}%")
+    else
+      @books = Book.paginate(page: params[:page])
     end
+
+    # @books = Book.all
+    # @search = params["search"]
+
+    # if @search.present?
+    #   @name = @search["title"]
+    # @books = @books.where("title LIKE ?", "%#{:q}%") if true
+    # end
+
+
+
+    # Author.where("firstname LIKE ?", "%#{"a"}%").joins(:books).where("title LIKE ?", "%#{@name}%")
+
+    # this return
+    # @books = @books.where("title LIKE ?", "%#{@name}%")
     
     # @books = @books.where("title LIKE ?", "%#{@name}%").joins(:authors).where("title LIKE ?", "%#{@name}%"))
 
@@ -36,6 +49,7 @@ class BooksController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
   def set_book
     @book = Book.find(params[:id])
   end

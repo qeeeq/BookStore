@@ -6,4 +6,6 @@ class Author < ApplicationRecord
 	def name
 		"#{firstname} #{lastname}"
 	end
+
+
 end

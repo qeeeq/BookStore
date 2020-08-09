@@ -4,7 +4,8 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    # @books = Book.all
+    @books = Book.all
+
     # @books = @books.where(title: params[:q]) if params[:q].present?
     # @books = @books.where("title LIKE ?", "#{params[:q]}") if params[:q].present?
 
@@ -14,6 +15,18 @@ class BooksController < ApplicationController
     else
       @books = Book.paginate(page: params[:page])
     end
+
+    if params[:q].present?
+      # @books = Book.joins(:authors).where("title LIKE ? or name LIKE = ?" , "%#{params[:q]}%", "%#{params[:q]}%")
+      # @books = Book.where("title LIKE ?", "%#{:q}%").joins(:authors).where("name LIKE = ?", "%#{params[:q]}%")
+      # @books = Author.where("name LIKE = ?", "%#{params[:q]}%").joins(:books).where("title LIKE = ?", "%#{params[:q]}%")
+      # @books = Book.joins(:authors).where("title LIKE ?", "%#{params[:q]}%")
+
+    else
+      @books = Book.all
+    end
+
+
 
     # @books = Book.all
     # @search = params["search"]

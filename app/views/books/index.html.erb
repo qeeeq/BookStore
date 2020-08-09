@@ -69,14 +69,6 @@
       </section>
 
 
-<div class="input-group">
-  <%= form_tag(root_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:q], placeholder: "Search Posts", class: 'form-control mr-sm-2' %>
-    <span class="input-group-btn">
-      <%= submit_tag "Search", class: 'btn btn-outline-success my-2 my-sm-0' %>
-    </span>
-  <% end %>
-</div>
 
   <div>
     <% if customer_signed_in? %>
@@ -95,7 +87,6 @@
     <% end %>
   </div>
 
-  
 
   <div class="album py-5 bg-light">
     <div class="container">

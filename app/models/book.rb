@@ -12,4 +12,8 @@ class Book < ApplicationRecord
 
 	self.per_page = 2
 
+	def book_title
+		"#{title}"
+	end
+
 end

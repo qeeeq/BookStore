@@ -15,5 +15,15 @@
   <%= @book.books_in_stock %>
 </p>
 
-<%= link_to 'Edit', edit_book_path(@book) %> |
+<p>
+  <strong>Author:</strong>
+  <%= @book.author.name %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.title %>
+</p>
+
+
 <%= link_to 'Back', books_path %>

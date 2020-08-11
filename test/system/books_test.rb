@@ -1,4 +1,6 @@
 require "application_system_test_case"
+require 'spec_helper'
+require 'test_helper'
 
 class BooksTest < ApplicationSystemTestCase
   setup do

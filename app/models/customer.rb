@@ -16,4 +16,7 @@ class Customer < ApplicationRecord
 		"#{first_name} #{last_name}"
 	end
 
+	def current_order
+		@current_order ||= orders.find_or_create_by(status: :in_progress)
+	end
 end

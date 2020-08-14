@@ -22,8 +22,8 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = current_customer.orders
-    # @order = Order.find(params[:customer_id]) 
+    # @order = current_customer.orders
+    @order = Order.find(params[:customer_id]) 
   end
 
   def edit

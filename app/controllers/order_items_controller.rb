@@ -8,6 +8,6 @@ class OrderItemsController < ApplicationController
 
 	def destroy
 	  @order_item.destroy
-	  redirect_to order_path
+	  redirect_to root_path
   end
 end

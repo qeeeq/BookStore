@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :orders
   # post '/add_to_order/:order_item_id', to: 'orders#add_to_order', as: 'add_to_order'
-  resources :order_items, only: %i[create]
+  resources :order_items, only: %i[create destroy]
 
   ActiveAdmin.routes(self)
   

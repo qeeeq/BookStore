@@ -24,10 +24,9 @@ class CustomersController < ApplicationController
 #   end
 
 
-#   def show
-#     @customers = Customer.find(params[:id])
-
-#   end
+  def show
+    # @customers = current_customer(customer_params) ???
+  end
 
 #   def edit
 #     @customer = Customer.find(params[:id])
@@ -43,10 +42,9 @@ class CustomersController < ApplicationController
 #     redirect_to(:action => 'index')
 #   end
 
-#   private
-#   def customer_params
-#     params.require(:customer).permit(:first_name, :last_name)
-#   end
-# end
+  private
+  def customer_params
+    params.permit(:first_name, :last_name)
+  end
 
 end

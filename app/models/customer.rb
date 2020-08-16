@@ -17,6 +17,6 @@ class Customer < ApplicationRecord
 	end
 
 	def current_order
-		@current_order ||= orders.find_or_create_by(status: :in_progress)
+		@current_order ||= orders.find_or_create_by!(status: :in_progress)
 	end
 end

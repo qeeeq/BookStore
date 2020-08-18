@@ -5,6 +5,7 @@ class CreditCard < ApplicationRecord
 	validates :expiration_year, presence: true
 	validates :firstname, presence: true
 	validates :lastname, presence: true
+	
 	def name
 		"#{number}"
 	end

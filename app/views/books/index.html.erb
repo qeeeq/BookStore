@@ -21,6 +21,11 @@
     </div>
   </div>
 
+
+  <%= link_to "/credit_cards" do%>
+    <button type="button" class="btn btn-primary my-2">credit_cards</button>
+  <%end%>
+
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -101,7 +106,6 @@
                   </div>
                   <div>
                     <%= link_to 'Buy', order_items_path(book_id: book.id), method: :post, class: "btn btn-sm btn-outline-secondary" %>
-
 
  
 

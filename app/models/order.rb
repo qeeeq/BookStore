@@ -1,24 +1,22 @@
 class Order < ApplicationRecord
-	# validates :total_price, presence: true,
-						# numericality: { greater_than_or_equal_to: 0 }
-	# validates :completed_date, presence: true
-	# validates :status, presence: true
 	validates :customer_id, presence: true
 
 	enum status: { in_progress: 0, completed: 1, shipped: 2 }
 
 	belongs_to :customer
-	belongs_to :credit_card
+	belongs_to :credit_card, optional: true
 	has_many :order_items
 	# has_one :billing_address
 	# has_one :shipping_address
 
-	def add_item(book_id)
-		order_items.create(book_id: book_id)
+	def add_order_item(book_id)
+		@order_items = order_items.create(book_id: book_id)
 	end
 
 	def calculate_total
-		self.total_price = order_items.each {  }
+		# self.total_price = order_items.each do |item|
+		# 	item.book.price * item.quantity
+		# end
 	end
 
 	# def add_order_item(order_item_id)

@@ -1,28 +1,19 @@
 class OrdersController < ApplicationController
 
 	def index
-    @orders = current_customer.orders(order_params) # Order.find(params[:customer_id])
+    @orders = Order.all
+    # @orders = current_customer.orders(order_params)
+    # Order.find(params[:customer_id])
   end
 
   def new
-    # customer = Customer.find(params[:customer_id])
-    @order = current_customer.orders.new
   end
 
   def create
-    @order = OrderItem.create(book_id: params[:book_id], order: current_customer.current_order)
-    redirect_to :back
-    # @order = Order.new(order_params)
-    # if @order.save
-    #   flash[:notice] = "Subject created successfully"
-    #   redirect_to(:action => 'index')
-    # else
-    #   render 'customers/show'
-    # end
   end
 
   def show
-    @order = current_customer.orders
+    @orders = current_customer.orders
     # @order = Order.find(params[:customer_id]) 
   end
 
@@ -33,14 +24,13 @@ class OrdersController < ApplicationController
   end
 
   def add_to_order
-    current_order.add_order_item(params[:order_item_id])
-    # redirect to
-    render 'orders/show'
+    # current_order.add_order_item(params[:order_item_id])
+    # render 'orders/show'
   end
 
   private
   def order_params
-    params.require(:order).permit(:customer_id, :order_item_id)
+    params.require(:order).permit(:customer_id, :order_item_id, :credit_card_id)
   end
 end
 

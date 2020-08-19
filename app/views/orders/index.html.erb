@@ -1,3 +1,29 @@
-<h1>Editing Order</h1>
-<%= @orders %>
+<h1>My Order (index)</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>status</th>
+      <th>total_price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.status %></td>
+        <td><%= order.total_price %></td>
+        <td></td>
+        <td><%= link_to 'Show', credit_card %></td>
+        <td><%= link_to 'Edit', edit_credit_card_path(credit_card) %></td>
+        <td><%= link_to 'Destroy', credit_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back', books_path %>

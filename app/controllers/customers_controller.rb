@@ -33,9 +33,10 @@ class CustomersController < ApplicationController
 #     @customer = Customer.find(params[:id])
 #   end
 
-#   def delete
-#      @customer = Customer.find(params[:id])
-#   end
+  # def delete
+  #    @customer = Customer.find(params[:id])
+  #    redirect_to root_path
+  # end
 
 #   def destroy
 #     customer = Customer.find(params[:id]).destroy #deze is zonder @ omdat het geen template rendert

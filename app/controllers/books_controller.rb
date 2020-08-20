@@ -9,7 +9,6 @@ class BooksController < ApplicationController
     # @books = @books.where(title: params[:q]) if params[:q].present?
     # @books = @books.where("title LIKE ?", "#{params[:q]}") if params[:q].present?
 
-
     if params[:q].present?
       @books = Book.where("title LIKE ?", "%#{params[:q]}%")
     else
@@ -25,34 +24,6 @@ class BooksController < ApplicationController
     else
       @books = Book.all
     end
-
-
-
-    # @books = Book.all
-    # @search = params["search"]
-
-    # if @search.present?
-    #   @name = @search["title"]
-    # @books = @books.where("title LIKE ?", "%#{:q}%") if true
-    # end
-
-
-
-    # Author.where("firstname LIKE ?", "%#{"a"}%").joins(:books).where("title LIKE ?", "%#{@name}%")
-
-    # this return
-    # @books = @books.where("title LIKE ?", "%#{@name}%")
-    
-    # @books = @books.where("title LIKE ?", "%#{@name}%").joins(:authors).where("title LIKE ?", "%#{@name}%"))
-
-
-    # if @search.present?
-    #   @name = @search["title"]
-    #   @books = book.author.where(:lastname => @name).joins(:books).where("book.title = ?", @name)
-    # end
-
-    # @books = @books.where(:title => @name).joins(:authors).where("authors.lastname = ?", @name)
-
   end
 
   # GET /books/1

@@ -15,7 +15,8 @@ class Order < ApplicationRecord
 
 	def calculate_total
 		# self.total_price = order_items.each do |item|
-		# 	item.book.price * item.quantity
+		# 	@total = item.book.price.sum(&:price)
+			# byebug
 		# end
 	end
 

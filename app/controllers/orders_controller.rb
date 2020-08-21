@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order
+  
 	def index
     @orders = Order.all
     # @orders = current_customer.orders(order_params)
@@ -21,11 +22,12 @@ class OrdersController < ApplicationController
   def destroy
   end
 
-def set_order
-  @order = current_customer.current_order
-end
-  private
-  def order_params
-    params.require(:order).permit(:customer_id, :credit_card_id)
+  def set_order
+    @order = current_customer.current_order
   end
+
+  private
+  # def order_params
+  #   params.require(:order).permit(:customer_id, :credit_card_id)
+  # end
 end

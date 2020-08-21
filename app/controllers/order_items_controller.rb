@@ -13,7 +13,6 @@ before_action :load_order, only: [:create]
 
 	def destroy
 		@order_item = OrderItem.find(params[:id])
-		# byebug
 	  @order_item.destroy
     respond_to do |format|
       format.html { redirect_to order_path, notice: 'order_item was successfully destroyed.' }
@@ -22,7 +21,6 @@ before_action :load_order, only: [:create]
   end
 
   private
-
 	def load_order
 		@order = current_customer.current_order
 	end

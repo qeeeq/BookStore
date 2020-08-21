@@ -1,29 +1,28 @@
-<h1>My Order (index)</h1>
+<h1>Index Order</h1>
+<h3>status <%= @order.status %></h3>
+<h3>total_price <%= %></h3>
+<h3>Order_items <%= @order.order_items.count %></h3>
 
+<p class="notice"><%= notice %></p>
 <table>
   <thead>
     <tr>
-      <th>status</th>
-      <th>total_price</th>
-      <th></th>
-      <th></th>
+      <th>book</th>
+      <th>price</th>
       <th></th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
+    <% @order.order_items.each do |item| %>
       <tr>
-        <td><%= order.status %></td>
-        <td><%= order.total_price %></td>
-        <td></td>
-        <td><%= link_to 'Show', credit_card %></td>
-        <td><%= link_to 'Edit', edit_credit_card_path(credit_card) %></td>
-        <td><%= link_to 'Destroy', credit_card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= item.book.title %></td>
+        <td><%= item.book.price %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
 <%= link_to 'Back', books_path %>

@@ -10,15 +10,21 @@ class Order < ApplicationRecord
 	# has_one :shipping_address
 
 	def add_order_item(book_id)
-		@order_items = order_items.create(book_id: book_id)
+		@order_items = order_items.find_or_create_by(book_id: book_id)
 	end
 
-	def calculate_total
-		# self.total_price = order_items.each do |item|
-		# 	@total = item.book.price.sum(&:price)
-			# byebug
+	# def total_price
+		# self.order_items.each do |item|
+			# @total = item.book.price.sum(&:price)
 		# end
-	end
+		# @total ||= self.order_items.book.sum(:price)
+		# order.order_items.book.sum(:price)
+	# end
+
+	# def total_prices
+	# 	byebug
+ #  	order_items.book.to_a.sum { |item| item.price }
+	# end
 
 	# def add_order_item(order_item_id)
 	# 	item = order_items.where('order_item_id = ?', order_item_id).first

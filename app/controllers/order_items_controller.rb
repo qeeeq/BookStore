@@ -2,14 +2,33 @@ class OrderItemsController < ApplicationController
 
 before_action :load_order, only: [:create]
 
+def index
+	@order_items = OrderItem.all
+end
+
+
 	def create
-		@order_item = OrderItem.create(book_id: params[:book_id], order_id: @order.id, quantity: params[:quantity] || 1)
-		@order.add_order_item(params[:book_id])
+		@order_item = OrderItem.find_by(book_id: params[:book_id])
+		if @order_item
+			@order_item.quantity += 1
+			@order_item.save
+		else
+			@order_item = OrderItem.create(book_id: params[:book_id], order_id: @order.id, quantity: params[:quantity] || 1)
+		end
 		# byebug
 		respond_to do |format|
-			format.html { redirect_to @order, notice: 'Successfully added product to cart.' }
+			format.html { redirect_to @order, notice: 'Successfully added product to order.' }
 		end
 	end
+
+	# def create
+	# 	@order_item = OrderItem.create(book_id: params[:book_id], order_id: @order.id, quantity: params[:quantity] || 1)
+	# 	@order.add_order_item(params[:book_id])
+	# 	# byebug
+	# 	respond_to do |format|
+	# 		format.html { redirect_to @order, notice: 'Successfully added product to order.' }
+	# 	end
+	# end
 
 	def destroy
 		@order_item = OrderItem.find(params[:id])

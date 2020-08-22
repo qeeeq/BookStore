@@ -1,7 +1,7 @@
-<h1>My Order</h1>
-<h3>status <%= @order.status %></h3>
-<h3>total_price <%= %></h3>
-<h3>Order_items <%= @order.order_items.count %></h3>
+<h3>My Order</h3>
+<p>Status: <%= @order.status %></p>
+<p>Total price: <%= %></p>
+<p>Order items: <%= @order.order_items.count %></p>
 
 <p class="notice"><%= notice %></p>
 <table>
@@ -9,7 +9,7 @@
     <tr>
       <th>book</th>
       <th>price</th>
-      <th></th>
+      <th>quantity</th>
       <th></th>
     </tr>
   </thead>
@@ -19,6 +19,7 @@
       <tr>
         <td><%= item.book.title %></td>
         <td><%= item.book.price %></td>
+        <td><%= item.quantity %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

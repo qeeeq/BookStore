@@ -1,28 +1,16 @@
-<h1>Index Order</h1>
-<h3>status <%= @order.status %></h3>
-<h3>total_price <%= %></h3>
-<h3>Order_items <%= @order.order_items.count %></h3>
-
-<p class="notice"><%= notice %></p>
 <table>
   <thead>
     <tr>
-      <th>book</th>
-      <th>price</th>
-      <th></th>
+      <th>order</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @order.order_items.each do |item| %>
+    <% @orders.each do |item| %>
       <tr>
-        <td><%= item.book.title %></td>
-        <td><%= item.book.price %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= item.id %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
-<%= link_to 'Back', books_path %>

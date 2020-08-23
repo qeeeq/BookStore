@@ -8,14 +8,8 @@ end
 
 
 	def create
-		@order_item = OrderItem.find_by(book_id: params[:book_id])
-		if @order_item
-			@order_item.quantity += 1
-			@order_item.save
-		else
-			@order_item = OrderItem.create(book_id: params[:book_id], order_id: @order.id, quantity: params[:quantity] || 1)
-		end
-		# byebug
+		# @order_item = OrderItem.create(book_id: params[:book_id], order_id: @order.id, quantity: params[:quantity] || 1)
+		@order.add_order_item(params[:book_id])
 		respond_to do |format|
 			format.html { redirect_to @order, notice: 'Successfully added product to order.' }
 		end

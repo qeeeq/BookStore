@@ -1,5 +1,4 @@
 class Order < ApplicationRecord
-	# before_create :load_order
 	validates :customer_id, presence: true
 
 	enum status: { in_progress: 0, completed: 1, shipped: 2 }
@@ -18,15 +17,15 @@ class Order < ApplicationRecord
 		else
 			@order_item = order_items.create(book_id: book_id, quantity: 1)
 		end
-		
 	end
 
-	# def calculate_total
-	# 	self.order_items.each do |item|
-	# 		@total = item.book.price.sum(&:price)
-	# 	end
-	# 	@total ||= self.order_items.book.sum(:price)
-	# 	order.order_items.book.sum(:price)
-	# end
+	def calculate_total
+		total_price = 0
+		order_items.each do |item|
+			result = item.quantity * item.book.price
+			total_price += result
+		end
+		update(total_price: total_price)
+	end
 
 end

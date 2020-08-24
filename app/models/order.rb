@@ -11,7 +11,7 @@ class Order < ApplicationRecord
 	# has_one :shipping_address
 
 	def add_order_item(book_id)
-		@order_item = OrderItem.find_by(book_id: book_id)
+		@order_item = order_items.find_by(book_id: book_id)
 		if @order_item
 			@order_item.quantity += 1
 			@order_item.save
@@ -21,12 +21,7 @@ class Order < ApplicationRecord
 		
 	end
 
- #  private
-	# def load_order
-	# 	@order = current_customer.current_order
-	# end
-
-	# def total_price
+	# def calculate_total
 	# 	self.order_items.each do |item|
 	# 		@total = item.book.price.sum(&:price)
 	# 	end

@@ -14,6 +14,9 @@ class OrdersController < ApplicationController
   end
 
   def show
+    if condition
+      
+    end
   end
 
   def edit
@@ -31,9 +34,5 @@ class OrdersController < ApplicationController
   def set_order
     @order = current_customer.current_order
   end
-
-  private
-  # def order_params
-  #   params.require(:order).permit(:customer_id, :credit_card_id)
-  # end
+  
 end

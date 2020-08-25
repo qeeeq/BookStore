@@ -1,16 +1,27 @@
+<h3>My Order complite:</h3>
+<p>Total price: <%= @order.total_price %></p>
 <table>
   <thead>
     <tr>
-      <th>order</th>
+      <th>book</th>
+      <th>price</th>
+      <th>quantity</th>
       <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |item| %>
+    <% @order.order_items.each do |item| %>
       <tr>
-        <td><%= item.id %></td>
+        <td><%= item.book.title %></td>
+        <td><%= item.book.price %></td>
+        <td><%= item.quantity %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+<%= form_with current_customer.credit_cards do |card| %>
+  <%= card.collection_select(:id, :number) %>
+<% end %>

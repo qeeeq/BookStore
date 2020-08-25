@@ -19,4 +19,14 @@ class Customer < ApplicationRecord
 	def current_order
 		@current_order ||= orders.find_or_create_by(status: :in_progress)
 	end
+
+	# def add_card(book_id)
+	# 	@card = credit_cards.find_by(book_id: book_id)
+	# 	if @card
+	# 		@card.quantity += 1
+	# 		@card.save
+	# 	else
+	# 		@card = credit_cards.create(book_id: book_id, quantity: 1)
+	# 	end
+	# end
 end

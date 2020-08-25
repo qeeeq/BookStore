@@ -1,5 +1,6 @@
 class CreditCardsController < ApplicationController
   before_action :set_credit_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:create]
 
   # GET /credit_cards
   # GET /credit_cards.json
@@ -24,11 +25,12 @@ class CreditCardsController < ApplicationController
   # POST /credit_cards
   # POST /credit_cards.json
   def create
-    @credit_card = CreditCard.new(credit_card_params)
+    @credit_card = @customer.credit_cards.new(credit_card_params)
     @credit_card.customer = current_customer
 
     respond_to do |format|
       if @credit_card.save
+        @customer.update(credit_card_id: @credit_card.id)
         format.html { redirect_to @credit_card, notice: 'Credit card was successfully created.' }
         format.json { render :show, status: :created, location: @credit_card }
       else
@@ -68,8 +70,12 @@ class CreditCardsController < ApplicationController
       @credit_card = CreditCard.find(params[:id])
     end
 
+    def set_customer
+      @customer = current_customer
+    end
+
     # Only allow a list of trusted parameters through.
     def credit_card_params
-      params.fetch(:credit_card, {}).permit(:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname)
+      params.fetch(:credit_card, {}).permit(:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
     end
 end

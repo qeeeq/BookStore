@@ -25,7 +25,7 @@
 <p></p>
 <%= form_with model: @credit_cards do |card_form| %>
   <%= label_tag("Select card:") %>
-  <%= card_form.collection_select(:credit_card_id, CreditCard.all, :id, :number) %>
+  <%= card_form.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
 <% end %>
 
 <p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>

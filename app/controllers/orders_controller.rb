@@ -3,8 +3,6 @@ class OrdersController < ApplicationController
   
 	def index
     @orders = Order.all
-    # @orders = current_customer.orders(order_params)
-    # Order.find(params[:customer_id])
   end
 
   def new
@@ -14,6 +12,16 @@ class OrdersController < ApplicationController
   end
 
   def show
+    # case params[:step]
+    # when '1'
+    #   render 'orders/addresses'
+    # when '2'
+    #   render 'orders/credit_cards'
+    # when '3'
+    # when '4'
+    # else
+      #
+    # end
   end
 
   def edit

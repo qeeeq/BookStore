@@ -22,6 +22,11 @@
 </table>
 
 
-<%= form_with current_customer.credit_cards do |card| %>
-  <%= card.collection_select(:id, :number) %>
+<p></p>
+<%= form_with model: @credit_cards do |card_form| %>
+  <%= label_tag("Select card:") %>
+  <%= card_form.collection_select(:credit_card_id, CreditCard.all, :id, :number) %>
 <% end %>
+
+<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
+<%= link_to 'Back', books_path %>

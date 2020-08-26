@@ -14,9 +14,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if condition
-      
-    end
   end
 
   def edit

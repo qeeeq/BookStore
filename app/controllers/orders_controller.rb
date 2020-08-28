@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # case params[:step]
+    # case params[:status]
     # when '1'
     #   render 'orders/addresses'
     # when '2'

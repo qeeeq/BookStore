@@ -1,29 +1,4 @@
-<h3>My Order</h3>
-<p>Status: <%= @order.status %></p>
-<p>Total price: <%= @order.total_price %></p>
-
-<p class="notice"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>book</th>
-      <th>price</th>
-      <th>quantity</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order.order_items.each do |item| %>
-      <tr>
-        <td><%= item.book.title %></td>
-        <td><%= item.book.price %></td>
-        <td><%= item.quantity %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'form', order: @order %>
 
 <p><%= link_to "Next", credit_cards_path %></p>
 <p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>

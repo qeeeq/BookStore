@@ -1,5 +1,5 @@
 <%= render 'form', order: @order %>
 
-<p><%= link_to "Next", credit_cards_path %></p>
+<p><%= link_to "Next", order_path(step: 1) %></p>
 <p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
 <%= link_to 'Back', books_path %>

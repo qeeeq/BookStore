@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   resources :credit_cards
   # post '/add_to_order/:order_item_id', to: 'orders#add_to_order', as: 'add_to_order'
   resources :order_items #only: %i[create destroy]
+  resources :billing_addresses
+  resources :shipping_addresses
+
+
 
 
   ActiveAdmin.routes(self)

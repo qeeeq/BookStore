@@ -1,5 +1,19 @@
 <%= render 'form', order: @order %>
 
-<p><%= link_to "Next", order_path(step: 1) %></p>
 <p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
 <%= link_to 'Back', books_path %>
+<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
+
+
+<%- case params[:step] %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% end %>
+
+link_to next
+link_to prev
+
+if params[:step] == 1
+link_to next(step = params[:step] - 1)

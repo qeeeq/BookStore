@@ -6,8 +6,8 @@ class Order < ApplicationRecord
 	belongs_to :customer
 	belongs_to :credit_card, optional: true
 	has_many :order_items, dependent: :destroy
-	# has_one :billing_address
-	# has_one :shipping_address
+	has_one :billing_address
+	has_one :shipping_address
 
 	def add_order_item(book_id)
 		@order_item = order_items.find_by(book_id: book_id)

@@ -1,30 +1,19 @@
-<h3>My Order</h3>
-<p>Status: <%= @order.status %></p>
-<p>Total price: <%= @order.total_price %></p>
+<%= render 'form', order: @order %>
 
-<p class="notice"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>book</th>
-      <th>price</th>
-      <th>quantity</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order.order_items.each do |item| %>
-      <tr>
-        <td><%= item.book.title %></td>
-        <td><%= item.book.price %></td>
-        <td><%= item.quantity %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<p><%= link_to "Next", credit_cards_path %></p>
 <p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
 <%= link_to 'Back', books_path %>
+<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
+
+
+<%- case params[:step] %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% when '1' then render 'steps/address' %>
+<% end %>
+
+link_to next
+link_to prev
+
+if params[:step] == 1
+link_to next(step = params[:step] - 1)

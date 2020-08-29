@@ -1,0 +1,16 @@
+
+<%= simple_form_for(@shipping_address) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+  	<%= f.input :ship_address,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "ship_address" }%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

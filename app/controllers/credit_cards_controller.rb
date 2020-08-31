@@ -30,6 +30,8 @@ class CreditCardsController < ApplicationController
     respond_to do |format|
       if @credit_card.save
         @customer.update(credit_card_id: @credit_card.id)
+        # @customer.orders.update(credit_card_id: @credit_card.id)
+
         format.html { redirect_to @credit_card, notice: 'Credit card was successfully created.' }
         format.json { render :show, status: :created, location: @credit_card }
       else

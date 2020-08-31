@@ -1,0 +1,18 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>number</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @order.customer.credit_cards.each do |credit_card| %>
+      <tr>
+        <td><%= credit_card.number %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to 'New Credit Card', new_credit_card_path %></p>

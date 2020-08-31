@@ -12,17 +12,17 @@ class OrdersController < ApplicationController
   end
 
   def show
-    case params[:step]
-    when '1'
-      redirect_to credit_cards_path
-    when '2'
-      redirect_to billing_addresses_path
-    when '3'
-      redirect_to orders_path
-    # when '4'
-    else
+    # case params[:step]
+    # when '1'
+    #   redirect_to credit_cards_path
+    # when '2'
+    #   redirect_to billing_addresses_path
+    # when '3'
+    #   redirect_to orders_path
+    # # when '4'
+    # else
 
-    end
+    # end
   end
 
   def edit

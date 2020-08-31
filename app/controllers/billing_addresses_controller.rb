@@ -25,7 +25,7 @@ class BillingAddressesController < ApplicationController
   # POST /billing_addresses.json
   def create
     @billing_address = BillingAddress.new(billing_address_params)
-
+    # byebug
     respond_to do |format|
       if @billing_address.save
         format.html { redirect_to @billing_address, notice: 'Billing address was successfully created.' }

@@ -22,11 +22,6 @@
           <%end%>
         </a>
         <a class="dropdown-item" href="#">
-          <%= link_to current_customer.current_order do%>
-            <button type="button" class="btn btn-primary my-2">My current order</button>
-          <%end%>
-        </a>
-        <a class="dropdown-item" href="#">
           <%= link_to billing_addresses_path do%>
             <button type="button" class="btn btn-primary my-2">My billing_addresses</button>
           <%end%>
@@ -38,6 +33,12 @@
         </a>
       </div>
     </div>
+
+    <% if current_customer %>
+      <%= link_to current_customer.current_order do%>
+        <button type="button" class="btn btn-primary my-2">My current order</button>
+      <%end%>
+    <% end %>
 
     <%= link_to "/credit_cards" do%>
       <button type="button" class="btn btn-primary my-2">credit_cards</button>

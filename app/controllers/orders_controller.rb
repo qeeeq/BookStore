@@ -12,17 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # case params[:step]
-    # when '1'
-    #   redirect_to credit_cards_path
-    # when '2'
-    #   redirect_to billing_addresses_path
-    # when '3'
-    #   redirect_to orders_path
-    # # when '4'
-    # else
-
-    # end
   end
 
   def edit
@@ -40,5 +29,10 @@ class OrdersController < ApplicationController
   def set_order
     @order = current_customer.current_order
   end
+
+  def build_card_step
+    @card_step = Steps.new(@order)
+  end
+      
   
 end

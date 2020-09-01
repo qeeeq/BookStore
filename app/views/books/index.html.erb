@@ -22,6 +22,11 @@
           <%end%>
         </a>
         <a class="dropdown-item" href="#">
+          <%= link_to current_customer.current_order do%>
+            <button type="button" class="btn btn-primary my-2">My current order</button>
+          <%end%>
+        </a>
+        <a class="dropdown-item" href="#">
           <%= link_to billing_addresses_path do%>
             <button type="button" class="btn btn-primary my-2">My billing_addresses</button>
           <%end%>

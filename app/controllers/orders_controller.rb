@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order
+  before_action :build_order_steps
   
 	def index
     @orders = Order.all
@@ -9,6 +10,10 @@ class OrdersController < ApplicationController
   end
 
   def create
+  end
+
+  def update
+    @step_builder.update(order_params)
   end
 
   def show
@@ -26,13 +31,21 @@ class OrdersController < ApplicationController
     end
   end
 
+  private
+
   def set_order
     @order = current_customer.current_order
   end
 
-  def build_card_step
-    @card_step = Steps.new(@order)
+  def build_order_steps
+    @step_builder = OrderSteps.new(@order)
   end
-      
-  
+
+  def order_params
+    params.permit(shipping_address: [:street_address, :zip, :city, :phone],
+              billing_address:  [:street_address, :zip, :city, :phone],
+              credit_card:      [:credit_card_id],
+              delivery: [:id],
+              shipping: [:check])
+  end
 end

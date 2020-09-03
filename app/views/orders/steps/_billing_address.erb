@@ -1,16 +1,7 @@
 
-<%= simple_form_for(@order.billing_address) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-  	<%= f.input :bil_address,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "bil_address" }%>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "ok" %>
-  </div>
+  <%= @order.billing_address %>
+<% if @order.billing_address %>
+  <%= @order.billing_address %>
+<% else %>
+  <p><%= link_to "Create billing_address", new_billing_address_path %></p>
 <% end %>

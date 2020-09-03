@@ -15,13 +15,13 @@
 	<%= render 'orders/steps/shipping_address' %>
 <% end %>
 
-	<% if params[:step] == "1" %>
-		<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-	<% elsif params[:step] == "2" %>
-		<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-	<% else %>
-		<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
-	<% end %>
+<% if params[:step] == "1" %>
+	<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+<% elsif params[:step] == "2" %>
+	<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+<% else %>
+	<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
+<% end %>
 
 
 

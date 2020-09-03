@@ -1,61 +1,42 @@
 
- <%= form_with model: @order, method: :patch do |card_form| %>
-  <%= label_tag("Select card:") %>
-  <%= card_form.collection_select('credit_card[credit_card_id]', current_customer.credit_cards, :id, :number, selected: @order.credit_card) %>
-  <!-- button to call OrdersController.update -->
+
+<%= form_with model: @order do |card_form| %>
+  <%= card_form.collection_select(:order, current_customer.credit_cards, :id, :number) %>
 <% end %>
 
-
-
-<!-- 
-<%= simple_form_for(@step_builder.credit_card, url: order_path(@order), method: :patch) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  
-  <div class="form-inputs">
-    <%= f.input :number,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "number" }%>
-    <%= f.input :CVV,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "CVV" }%>
-    <%= f.input :expiration_month,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "expiration_month" }%>
-    <%= f.input :expiration_year,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "expiration_year" }%>
-    <%= f.input :firstname,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "firstname" }%>
-    <%= f.input :lastname,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "lastname" }%>
-  </div>
-
-
-  <div class="btn btn-primary">
-    <%= f.button :submit, "ok" %>
-  </div>
-  <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<% end %> -->
+  <!-- button to call OrdersController.update -->
+<%= button_to "Ok", { :action => 'update', :id => @order.id}, :method => :put %>
 
 
 
-<%if 1 == 2 %>
 
-if (current_customer? find?)credit_card.exists?(customer_id: customer.id)
+
+
+
+
+
+
+  <%= form_with model: @order, method: :patch do |card_form| %>
+    <%= label_tag("Select card:") %>
+    <%= card_form.collection_select('credit_card[credit_card_id]', current_customer.credit_cards, :id, :number, selected: @order.credit_card) %>
+  <% end %>
+
+  <%= form_with model: @order do |card_form| %>
+    <%= card_form.select(:credit_card_id, [credit_card_id) %>
+  <% end %>
+
+  <%= form_with model: @person do |person_form| %>
+    <%= person_form.collection_select(:city_id, City.all, :id, :name) %>
+  <% end %>
+
+
+<!-- button_to "Ok", { :controller => 'orders_controller', :id => @order.id}, :method => :put 
+button_to "Delete Image", { action: "delete", id: @image.id }, method: :delete -->
+
+<%# if (current_customer? find?)credit_card.exists?(customer_id: customer.id)
   # same as Business.where(user_id: current_user.id).exists?
   # ...
 else
   # ...
 end
-<% end %>
+%>

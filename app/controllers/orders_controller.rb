@@ -12,8 +12,19 @@ class OrdersController < ApplicationController
   def create
   end
 
+  # def updater_credit_card
+  #   @step_builder.update_credit_card(order_params)
+  # end
+
+  # def updater_billing_address
+  #   @step_builder.update_billing_address(order_params)
+  # end
+
   def update
-    @step_builder.update(order_params)
+    if params[:step] == "1"
+      @step_builder.update_credit_card(order_params)
+    end
+    
   end
 
   def show
@@ -46,6 +57,12 @@ class OrdersController < ApplicationController
               billing_address:  [:street_address, :zip, :city, :phone],
               credit_card:      [:credit_card_id],
               delivery: [:id],
-              shipping: [:check])
+              shipping: [:check],
+              order_id: [:order_id])
+    # params.require(:order).permit(shipping_address: [:street_address, :zip, :city, :phone],
+    #           billing_address:  [:street_address, :zip, :city, :phone],
+    #           credit_card:      [:credit_card_id],
+    #           delivery: [:id],
+    #           shipping: [:check])
   end
 end

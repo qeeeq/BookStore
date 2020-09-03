@@ -5,23 +5,32 @@ class OrderSteps
     @order = order
   end
 
-  def update(params)
-    case params[:step]
-    when '1'
+  def update_credit_card(params)
+    # case params[:step]
+    # when '1'
       credit_card = order.customer.credit_cards.find_by(number: params[:credit_card][:number])
+      # byebug
       if credit_card
         order.update(credit_card_id: credit_card.id)
       else
         # res = order.customer.credit_cards.create(params[:credit_card])
         order.update(credit_card_id: res.id)
       end
-      order.create_credit_card(params[:credit_card])
-    end
+      # order.create_credit_card(params[:credit_card])
+    # end
   end
 
-	def credit_card
-    order.credit_card || order.customer.credit_cards.first || CreditCard.new
-	end
+	# def credit_card
+ #    order.credit_card || order.customer.credit_cards.first || CreditCard.new
+	# end
+
+def update_billing_address(params)
+  billing_address = order.customer.billing_address.find_by(bil_address: params[:billing_address][:bil_address])
+  if billing_address
+    order.update(credit_card_id: credit_card.id)
+  end
+end
+
 
   private
   	def credit_card_params
@@ -32,7 +41,7 @@ class OrderSteps
       @customer = current_customer
     end
 
-    def set_credit_card
-      @credit_card_step = CreditCard.find(params[:id])
-    end
+    # def set_credit_card
+    #   @credit_card_step = CreditCard.find(params[:id])
+    # end
 end

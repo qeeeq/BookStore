@@ -1,23 +1,18 @@
 class OrderSteps
   attr_reader :order
 
-  def initialize(order)
+  def initialize(order) #если передаем @order, OrderSteps.new(@order), получается @order = @order :)
     @order = order
   end
-
-# dependency injection?
-  # def initialize(?)
-  #   @? = ?
-  # end
 
   def update(params)
     case params[:step]
     when '1'
-      cc = order.customer.credit_cards.find_by(number: params[:credit_card][:number])
-      if cc
-        order.update(credit_card_id: cc.id)
+      credit_card = order.customer.credit_cards.find_by(number: params[:credit_card][:number])
+      if credit_card
+        order.update(credit_card_id: credit_card.id)
       else
-        res = order.customer.credit_cards.create(params[:credit_card])
+        # res = order.customer.credit_cards.create(params[:credit_card])
         order.update(credit_card_id: res.id)
       end
       order.create_credit_card(params[:credit_card])

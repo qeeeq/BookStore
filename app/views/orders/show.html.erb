@@ -4,6 +4,8 @@
 <p><%= link_to 'Back', books_path %></p>
 
 
+
+
 <% case params[:step]
 		when '1' %>
 	<%= render 'orders/steps/credit_card' %>
@@ -12,16 +14,6 @@
 	<% when '3' %> 
 	<%= render 'orders/steps/shipping_address' %>
 <% end %>
-
-
-if '1'
-  next
-  elsif '4'
-  prev
-  else
-  next
-  prev
-  end
 
 	<% if params[:step] == "1" %>
 		<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
@@ -36,5 +28,15 @@ if '1'
 
 
 
-<!-- 	link_to prev -->
+<!-- 	link_to prev 
+	if '1'
+  next
+  elsif '4'
+  prev
+  else
+  next
+  prev
+  end
+
+-->
 

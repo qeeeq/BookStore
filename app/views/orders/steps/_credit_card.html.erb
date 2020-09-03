@@ -1,39 +1,12 @@
-<!-- 
-<table>
-  <thead>
-    <tr>
-      <th>number</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @order.customer.credit_cards.each do |credit_card| %>
-      <tr>
-        <td><%= credit_card.number %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<p><%= link_to 'New Credit Card', new_credit_card_path %></p>
-
-
- -->
-
-<!--  <form aciton='/order/20' method="patch">
-    <dropdown creidt_card_id=1>
-    
-    <inout>
-    <inout>
-    <inout>
-     <inout>
-       <inout>
- </form> -->
 
  <%= form_with model: @order, method: :patch do |card_form| %>
   <%= label_tag("Select card:") %>
   <%= card_form.collection_select('credit_card[credit_card_id]', current_customer.credit_cards, :id, :number, selected: @order.credit_card) %>
+  <!-- button to call OrdersController.update -->
 <% end %>
+
+
+
 <!-- 
 <%= simple_form_for(@step_builder.credit_card, url: order_path(@order), method: :patch) do |f| %>
   <%= f.error_notification %>

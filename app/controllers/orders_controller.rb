@@ -21,9 +21,23 @@ class OrdersController < ApplicationController
   # end
 
   def update
-    if params[:step] == "1"
-      @step_builder.update_credit_card(order_params)
-    end
+    @order.update(order_params)
+    # if params[:step] == "1"
+      # if @order.update(order_params)
+        # redirect_to :action => "show", :step => 2
+
+      # else
+      #   redirect_to root_path
+      # end
+      # @step_builder.update_credit_card(order_params)
+      # Order.find(params[:credit_card_id])
+      # if @order.update(order_params)
+      #   render "steps/billing_address"
+      # else
+      #   redirect_to root_path
+      # end
+      
+    # end
     
   end
 
@@ -53,13 +67,15 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.permit(shipping_address: [:street_address, :zip, :city, :phone],
+    params.require(:order).permit(
+      :credit_card_id,
+              shipping_address: [:street_address, :zip, :city, :phone],
               billing_address:  [:street_address, :zip, :city, :phone],
-              credit_card:      [:credit_card_id],
               delivery: [:id],
               shipping: [:check],
               order_id: [:order_id])
-    # params.require(:order).permit(shipping_address: [:street_address, :zip, :city, :phone],
+    # params.require(:order).permit
+    # (shipping_address: [:street_address, :zip, :city, :phone],
     #           billing_address:  [:street_address, :zip, :city, :phone],
     #           credit_card:      [:credit_card_id],
     #           delivery: [:id],

@@ -1,22 +1,8 @@
 
-
-<%= form_with model: @order do |card_form| %>
-  <%= card_form.collection_select(:order, current_customer.credit_cards, :id, :number) %>
-  <%= button_to "Ok", { :action => 'update', :id => @order.id}, :method => :put %>
-
+<%= form_with model: @order do |person_form| %>
+  <%= person_form.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
+<%= person_form.submit %>
 <% end %>
-
-  <!-- button to call OrdersController.update -->
-
-
-
-
-
-
-
-
-
-
 
 <!-- button_to "Ok", { :controller => 'orders_controller', :id => @order.id}, :method => :put 
 button_to "Delete Image", { action: "delete", id: @image.id }, method: :delete -->

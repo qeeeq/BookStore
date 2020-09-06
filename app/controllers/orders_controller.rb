@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :set_order
   before_action :build_order_steps
-  
+  respond_to :js, only: [:update]
+  respond_to :html
 	def index
     @orders = Order.all
   end
@@ -12,36 +13,24 @@ class OrdersController < ApplicationController
   def create
   end
 
-  # def updater_credit_card
-  #   @step_builder.update_credit_card(order_params)
-  # end
-
-  # def updater_billing_address
-  #   @step_builder.update_billing_address(order_params)
-  # end
-
   def update
     @order.update(order_params)
-    # if params[:step] == "1"
-      # if @order.update(order_params)
-    respond_to do |format|
-      format.html { redirect_to :action => "show", :step => 2 }
-    end
-        
+    # if @order.update(order_params)
+    #   respond_to do |format|
+    #     format.html { redirect_to :action => "show", :step => 2 }
+    #     format.js
+    #     format.json { render :show, status: :updated, location: @order }
+    #   end
+    # else
+    #   redirect_to root_path
+    # end
 
-      # else
-      #   redirect_to root_path
-      # end
+    # if params[:step] == "1"
+      # ...
       # @step_builder.update_credit_card(order_params)
       # Order.find(params[:credit_card_id])
-      # if @order.update(order_params)
-      #   render "steps/billing_address"
-      # else
-      #   redirect_to root_path
-      # end
-      
     # end
-    
+
   end
 
   def show

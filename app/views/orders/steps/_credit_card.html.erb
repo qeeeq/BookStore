@@ -1,7 +1,9 @@
 
 <%= form_with model: @order do |person_form| %>
   <%= person_form.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
-<%= person_form.submit %>
+  <%= link_to order_path(@order.id, step: params[:step].to_i + 1) do %> 
+    <button class="button">asd</button> 
+  <% end %>
 <% end %>
 
 <% if @order.credit_card %>
@@ -9,6 +11,8 @@
 <% else %>
   <p><%= link_to "Create credit_card", new_credit_card_path %></p>
 <% end %>
+
+
 
 
  <%= form_tag "/credit_cards/show", method: :get do %>

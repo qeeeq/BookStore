@@ -24,7 +24,10 @@ class OrdersController < ApplicationController
     @order.update(order_params)
     # if params[:step] == "1"
       # if @order.update(order_params)
-        # redirect_to :action => "show", :step => 2
+    respond_to do |format|
+      format.html { redirect_to :action => "show", :step => 2 }
+    end
+        
 
       # else
       #   redirect_to root_path

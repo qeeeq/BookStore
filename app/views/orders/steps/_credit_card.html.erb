@@ -1,24 +1,9 @@
 
-<%= form_with model: @order do |person_form| %>
-  <%= person_form.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
-  <%= link_to order_path(@order.id, step: params[:step].to_i + 1) do %> 
-    <button class="button">asd</button> 
-  <% end %>
+<%= form_for @order, authenticity_token: false do |f| %>
+  <%= f.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
+  <%= submit_tag("submit") %>
 <% end %>
 
-<% if @order.credit_card %>
-  <%= @order.credit_card %>
-<% else %>
-  <p><%= link_to "Create credit_card", new_credit_card_path %></p>
-<% end %>
-
-
-
-
- <%= form_tag "/credit_cards/show", method: :get do %>
-   <%= select_tag "id", options_for_select(current_customer.credit_cards.collect{|credit_card| ["#{credit_card.number} #{credit_card.id}", credit_card.id] }) %>
-   <%= submit_tag "View credit_card" %>
- <% end %>
 
 <!-- button_to "Ok", { :controller => 'orders_controller', :id => @order.id}, :method => :put 
 button_to "Delete Image", { action: "delete", id: @image.id }, method: :delete -->

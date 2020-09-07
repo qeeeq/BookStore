@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   before_action :build_order_steps
   respond_to :js, only: [:update]
   respond_to :html
+  skip_before_action :verify_authenticity_token
+
+
 	def index
     @orders = Order.all
   end
@@ -15,6 +18,9 @@ class OrdersController < ApplicationController
 
   def update
     @order.update(order_params)
+    respond_to do |format|
+      format.html { redirect_to :action => "show", :step => 2 }
+    end
     # if @order.update(order_params)
     #   respond_to do |format|
     #     format.html { redirect_to :action => "show", :step => 2 }

@@ -8,9 +8,6 @@ class OrderSteps
 
   def update_credit_card(order_params)
 
-
-
-
     # case params[:step]
     # when '1'
       # credit_card = order.customer.credit_cards.find_by(number: params[:credit_card][:number])

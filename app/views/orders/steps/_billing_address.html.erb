@@ -1,6 +1,5 @@
-
-  <%= @order.credit_card.number %>
-
+<p>Card number: <%= @order.credit_card.number %></p>
+  
 <% if @order.billing_address %>
   <%= @order.billing_address %>
 <% else %>

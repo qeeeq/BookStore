@@ -1,7 +1,18 @@
 
 <%= simple_form_for(@billing_address) do |f| %>
+
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <% if billing_address.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(billing_address.errors.count, "error") %> prohibited this billing_address from being saved:</h2>
+        <ul>
+          <% billing_address.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
   <div class="form-inputs">
   	<%= f.input :bil_address,
@@ -14,3 +25,6 @@
     <%= f.button :submit, "ok" %>
   </div>
 <% end %>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+

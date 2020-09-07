@@ -1,6 +1,6 @@
 class BillingAddressesController < ApplicationController
   before_action :set_billing_address, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_order
   # GET /billing_addresses
   # GET /billing_addresses.json
   def index
@@ -71,4 +71,9 @@ class BillingAddressesController < ApplicationController
     def billing_address_params
       params.fetch(:billing_address, {}).permit(:bil_address)
     end
+
+    def set_order
+      @order = current_customer.current_order
+    end
+
 end

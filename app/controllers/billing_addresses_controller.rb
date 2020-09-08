@@ -1,10 +1,11 @@
 class BillingAddressesController < ApplicationController
   before_action :set_billing_address, only: [:show, :edit, :update, :destroy]
-  before_action :set_order
+  before_action :set_order, only: [:create]
+  before_action :set_customer, only: [:create]
   # GET /billing_addresses
   # GET /billing_addresses.json
   def index
-    @billing_addresses = BillingAddress.all
+    @billing_addresses = @order.billing_address
   end
 
   # GET /billing_addresses/1
@@ -26,8 +27,10 @@ class BillingAddressesController < ApplicationController
   def create
     @billing_address = BillingAddress.new(billing_address_params)
     # byebug
+    
     respond_to do |format|
       if @billing_address.save
+        @order.update(billing_address_id: billing_address.id)
         format.html { redirect_to @billing_address, notice: 'Billing address was successfully created.' }
         format.json { render :show, status: :created, location: @billing_address }
       else
@@ -69,7 +72,11 @@ class BillingAddressesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def billing_address_params
-      params.fetch(:billing_address, {}).permit(:bil_address)
+      params.fetch(:billing_address, {}).permit(:bil_address, :order_id)
+    end
+
+    def set_customer
+      @customer = current_customer
     end
 
     def set_order

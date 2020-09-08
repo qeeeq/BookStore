@@ -1,6 +1,6 @@
 class BillingAddressesController < ApplicationController
   before_action :set_billing_address, only: [:show, :edit, :update, :destroy]
-  before_action :set_order, only: [:create]
+  before_action :set_order#, only: [:create]
   before_action :set_customer, only: [:create]
   # GET /billing_addresses
   # GET /billing_addresses.json
@@ -25,7 +25,9 @@ class BillingAddressesController < ApplicationController
   # POST /billing_addresses
   # POST /billing_addresses.json
   def create
-    @billing_address = BillingAddress.new(billing_address_params)
+    byebug
+    # @billing_address = BillingAddress.new(billing_address_params)
+    @billing_address = @order.billing_address.new(billing_address_params)
     # byebug
     
     respond_to do |format|

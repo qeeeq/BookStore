@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_29_163050) do
+ActiveRecord::Schema.define(version: 2020_09_08_130959) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 2020_08_29_163050) do
     t.integer "status", default: 0
     t.integer "customer_id"
     t.integer "credit_card_id"
+    t.integer "billing_address_id"
+    t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
   end
 
   create_table "ratings", force: :cascade do |t|

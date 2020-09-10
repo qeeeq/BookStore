@@ -25,12 +25,13 @@ class BillingAddressesController < ApplicationController
   # POST /billing_addresses
   # POST /billing_addresses.json
   def create
-    byebug
-    # @billing_address = BillingAddress.new(billing_address_params)
-    @billing_address = @order.billing_address.new(billing_address_params)
+    # byebug
+    @billing_address = BillingAddress.new(billing_address_params)
+    # @billing_address = @order.billing_address.new(billing_address_params)
     # byebug
     
     respond_to do |format|
+      # byebug
       if @billing_address.save
         @order.update(billing_address_id: billing_address.id)
         format.html { redirect_to @billing_address, notice: 'Billing address was successfully created.' }
@@ -69,6 +70,7 @@ class BillingAddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billing_address
+      # @billing_address = BillingAddress.find(@order.billing_address.id)
       @billing_address = BillingAddress.find(params[:id])
     end
 

@@ -1,32 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Billing Addresses</h3>
-<%= @billing_addresses %>
+<h3>Billing Address</h3>
 
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3">bil_address</th>
-    </tr>
-  </thead>
+<% if @order.billing_address %>
 
-  <tbody>
-    <% @billing_addresses.each do |billing_address| %>
-      <tr>
-        <td><%= billing_address.bil_address %></td>
-        <td><%= link_to 'Show', billing_address %></td>
-        <td><%= link_to 'Edit', edit_billing_address_path(billing_address) %></td>
-        <td><%= link_to 'Destroy', billing_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<table>
+	  <thead>
+	    <tr>
+	      <th colspan="3">Billing address:</th>
+	    </tr>
+	  </thead>
 
+	  <tbody>
+	      <tr>
+	        <td><%= @order.billing_address.bil_address %></td>
+	        <td><%= link_to 'Show', billing_addresses_path %></td>
+	        <td><%= link_to 'Edit', edit_billing_address_path(@order.billing_address) %></td>
+	        <td><%= link_to 'Destroy', @order.billing_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	      </tr>
+	  </tbody>
+	</table>
 
+<% else %>
+	<p>nil</p>
+<% end %>
 
 <br>
 
 <%= link_to 'New Billing Address', new_billing_address_path %>
 <p><%= link_to "To books", root_path %></p>
 <p><%= link_to "Next", orders_path(step: 3) %></p>
+

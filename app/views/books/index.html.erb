@@ -1,5 +1,4 @@
 <header>
-
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,22 +34,22 @@
     </div>
 
     <% if current_customer %>
-      <%= link_to current_customer.current_order do%>
+      <%= link_to current_customer.current_order do %>
         <button type="button" class="btn btn-primary my-2">My current order</button>
+      <%end%>
+      <%= link_to credit_cards_path do %>
+        <button type="button" class="btn btn-primary my-2">My credit cards</button>
       <%end%>
     <% end %>
 
-    <%= link_to "/credit_cards" do%>
-      <button type="button" class="btn btn-primary my-2">credit_cards</button>
-    <%end%>
+    
+
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-
           <div>
             <% if customer_signed_in? %>
-              <span>Hi, <%= current_customer.email %></span>
               <%= link_to destroy_customer_session_path, method: :get, data: { confirm: 'Are you sure?' } do%>
                 <button type="button" class="btn btn-primary my-2">Logout</button>
               <%end%>
@@ -63,7 +62,6 @@
               <% end%>
             <% end %>
           </div>
-
         </li>
       </ul>
       <form class="form-inline mt-2 mt-md-0"> 
@@ -76,7 +74,12 @@
 
 <main role="main">
   <section class="jumbotron text-center">
+      <% if customer_signed_in? %>
+    <br>
+        <div style="text-align: left">Logged in as <span style="color:green"><%= current_customer.email %></span></div>
+      <%end%>
     <div class="container">
+
       <h1 class="jumbotron-heading">Books example</h1>
       <p class="lead text-muted">Something short and leading about the collection bla-bla.</p>
 

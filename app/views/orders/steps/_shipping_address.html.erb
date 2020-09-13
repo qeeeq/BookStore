@@ -1,0 +1,11 @@
+<p>Card number: <%= @order.credit_card.number %></p>
+
+<% if @order.billing_address %>
+ <p><%= @order.billing_address.bil_address %></p>
+<% end %>
+  
+<% if @order.shipping_address %>
+  <%= @order.shipping_address.ship_address %>
+<% else %>
+  <p><%= link_to "Create shipping address", new_shipping_address_path %></p>
+<% end %>

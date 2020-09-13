@@ -6,6 +6,7 @@ class BillingAddressesController < ApplicationController
   # GET /billing_addresses.json
   def index
     @billing_addresses = @order.billing_address
+    # @billing_addresses = BillingAddress.all
   end
 
   # GET /billing_addresses/1
@@ -36,7 +37,7 @@ class BillingAddressesController < ApplicationController
       if @billing_address.save
         # @order.update(:billing_address_id)
         @order.update({:billing_address_id => [@billing_address.id]})
-        format.html { redirect_to @billing_address, notice: 'Billing address was successfully created.' }
+        format.html { redirect_to  order_path(@order.id, step: 2), notice: 'Billing address was successfully created.' }
         format.json { render :show, status: :created, location: @billing_address }
       else
         format.html { render :new }

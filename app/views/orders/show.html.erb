@@ -16,9 +16,10 @@
 <% end %>
 
 <% if params[:step] == "1" %>
-	<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+<br>
+	<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
 <% elsif params[:step] == "2" %>
-	<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+	<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
 <% else %>
 	<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
 <% end %>

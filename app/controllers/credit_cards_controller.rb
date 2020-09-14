@@ -1,7 +1,7 @@
 class CreditCardsController < ApplicationController
   before_action :set_credit_card, only: [:show, :edit, :update, :destroy]
   before_action :set_customer, only: [:create]
-
+  before_action :set_order
   # GET /credit_cards
   # GET /credit_cards.json
   def index
@@ -30,7 +30,7 @@ class CreditCardsController < ApplicationController
     respond_to do |format|
       if @credit_card.save
         @customer.update(credit_card_id: @credit_card.id)
-        format.html { redirect_to @credit_card, notice: 'Credit card was successfully created.' }
+        format.html { redirect_to order_path(@order.id, step: 1), notice: 'Credit card was successfully created.' }
         format.json { render :show, status: :created, location: @credit_card }
       else
         format.html { render :new }
@@ -76,5 +76,9 @@ class CreditCardsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def credit_card_params
       params.fetch(:credit_card, {}).permit(:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
+    end
+
+    def set_order
+      @order = current_customer.current_order
     end
 end

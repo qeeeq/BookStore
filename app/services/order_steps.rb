@@ -6,7 +6,7 @@ class OrderSteps
     @order = order
   end
 
-  def update_credit_card(order_params)
+  def update_credit_card#(credit_card_params)
 
     # case params[:step]
     # when '1'
@@ -26,7 +26,7 @@ class OrderSteps
  #    order.credit_card || order.customer.credit_cards.first || CreditCard.new
 	# end
 
-def update_billing_address(params)
+def update_billing_address#(billing_address_params)
   billing_address = order.customer.billing_address.find_by(bil_address: params[:billing_address][:bil_address])
   if billing_address
     order.update(credit_card_id: credit_card.id)
@@ -36,7 +36,11 @@ end
 
   private
   	def credit_card_params
-  	  params.fetch(:credit_card, {}).permit(:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
+      params.require(:credit_card).permit
+                   (:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
+
+  	# params.fetch(:credit_card, {}).permit
+    #             (:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
   	end
 
     def set_customer
@@ -44,15 +48,16 @@ end
     end
 
     # def set_credit_card
-    #   @credit_card_step = CreditCard.find(params[:id])
+    #   @credit_card = CreditCard.find(params[:id])
     # end
-      # def order_params
-      #   params.require(:order).permit(
-      #   :credit_card_id,
-      #         shipping_address: [:street_address, :zip, :city, :phone],
-      #         billing_address:  [:street_address, :zip, :city, :phone],
-      #         delivery: [:id],
-      #         shipping: [:check],
-      #         order_id: [:order_id])
-      # end
+
+    # def order_params
+    #   params.require(:order).permit(
+    #   :credit_card_id,
+    #         shipping_address: [:street_address, :zip, :city, :phone],
+    #         billing_address:  [:street_address, :zip, :city, :phone],
+    #         delivery: [:id],
+    #         shipping: [:check],
+    #         order_id: [:order_id])
+    # end
 end

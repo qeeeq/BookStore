@@ -36,8 +36,7 @@ end
 
   private
   	def credit_card_params
-      params.require(:credit_card).permit
-                   (:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
+      params.require(:credit_card).permit(:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)
 
   	# params.fetch(:credit_card, {}).permit
     #             (:number, :CVV, :expiration_month, :expiration_year, :firstname, :lastname, :customer_id)

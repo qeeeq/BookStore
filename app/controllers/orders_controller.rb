@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   respond_to :js, only: [:update]
   respond_to :html
   skip_before_action :verify_authenticity_token
+  before_action :set_customer#, only: [:update]
 
 
 	def index
@@ -56,27 +57,35 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_order
-    @order = current_customer.current_order
-  end
+    def set_order
+      @order = current_customer.current_order
+    end
 
-  def build_order_steps
-    @step_builder = OrderSteps.new(@order)
-  end
+    def build_order_steps
+      @step_builder = OrderSteps.new(@order)
+    end
 
-  def order_params
-    params.require(:order).permit(
-      :credit_card_id,
-              shipping_address: [:street_address, :zip, :city, :phone],
-              billing_address:  [:street_address, :zip, :city, :phone],
-              delivery: [:id],
-              shipping: [:check],
-              order_id: [:order_id])
-    # params.require(:order).permit
-    # (shipping_address: [:street_address, :zip, :city, :phone],
-    #           billing_address:  [:street_address, :zip, :city, :phone],
-    #           credit_card:      [:credit_card_id],
-    #           delivery: [:id],
-    #           shipping: [:check])
-  end
+    # def set_credit_card
+    #   @credit_card = CreditCard.find(params[:id])
+    # end
+
+    def set_customer
+      @customer = current_customer
+    end
+
+    def order_params
+      params.require(:order).permit(
+        :credit_card_id,
+                shipping_address: [:street_address, :zip, :city, :phone],
+                billing_address:  [:street_address, :zip, :city, :phone],
+                delivery: [:id],
+                shipping: [:check],
+                order_id: [:order_id])
+      # params.require(:order).permit
+      # (shipping_address: [:street_address, :zip, :city, :phone],
+      #           billing_address:  [:street_address, :zip, :city, :phone],
+      #           credit_card:      [:credit_card_id],
+      #           delivery: [:id],
+      #           shipping: [:check])
+    end
 end

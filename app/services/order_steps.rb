@@ -1,9 +1,20 @@
 class OrderSteps
   attr_reader :order
+  #, :user
   # include AbstractController::Rendering
 
-  def initialize(order) #если передаем @order, OrderSteps.new(@order), получается @order = @order :)
+#если передаем @order, OrderSteps.new(@order), получается @order = @order :)
+  def initialize(order)
     @order = order
+  end
+
+  # def initialize(order, user:) 
+  #   @order = order
+  #   @user = user
+  # end
+
+  def call
+    @order.build_billing_address
   end
 
   def update_credit_card#(credit_card_params)
@@ -26,12 +37,12 @@ class OrderSteps
  #    order.credit_card || order.customer.credit_cards.first || CreditCard.new
 	# end
 
-def update_billing_address#(billing_address_params)
-  billing_address = order.customer.billing_address.find_by(bil_address: params[:billing_address][:bil_address])
-  if billing_address
-    order.update(credit_card_id: credit_card.id)
+  def update_billing_address#(billing_address_params)
+    @billing_address = @order.customer.billing_address.find_by(bil_address: params[:billing_address][:bil_address])
+    if billing_address
+      @order.update(billing_address: billing_address.id)
+    end
   end
-end
 
 
   private

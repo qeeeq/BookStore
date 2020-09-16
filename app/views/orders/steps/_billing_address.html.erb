@@ -1,8 +1,25 @@
 <p>Card number: <%= @order.credit_card.number %></p>
   
 <% if @order.billing_address %>
+
   <p>Billing address: <%= @order.billing_address.bil_address %></p>
-  <p><%= link_to "Change billing address", new_billing_address_path %></p>
 <% else %>
   <p><%= link_to "Create billing address", new_billing_address_path %></p>
 <% end %>
+
+<%#byebug %>
+<br>
+Change billing address
+<br>
+<%= simple_form_for(@order, method: :put) do |f| %>
+  <%= f.fields_for :billing_address do |billing_address| %>
+    <%= billing_address.input :bil_address %>
+	<% end %>
+	  <div class="btn btn-primary">
+	  <%= f.button :submit, "submit" %>
+	</div>
+<% end %>
+<%byebug %>
+<%#= render 'billing_addresses/form', billing_address: BillingAddress.new %>
+
+<p><%#= link_to "Change billing address", new_billing_address_path %></p>

@@ -27,17 +27,17 @@ class BillingAddressesController < ApplicationController
   # POST /billing_addresses.json
   def create
     # byebug
+    # @billing_address = @order.new(billing_address_params.merge(order: @order))
     @billing_address = BillingAddress.new(billing_address_params.merge(order: @order))
-    # @billing_address = BillingAddress.new(billing_address_params.merge(order: @order))
-    # @billing_address = @order.new_billing_addresses.new(billing_address_params)
+    # @billing_address = @order.billing_address.new(billing_address_params)
+
     # byebug
     
     respond_to do |format|
       # byebug
       if @billing_address.save
-        # @order.update(:billing_address_id)
         @order.update({:billing_address_id => [@billing_address.id]})
-        format.html { redirect_to  order_path(@order.id, step: 2), notice: 'Billing address was successfully created.' }
+        format.html { redirect_to order_path(@order.id, step: 2), notice: 'Billing address was successfully created.' }
         format.json { render :show, status: :created, location: @billing_address }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class BillingAddressesController < ApplicationController
   def update
     respond_to do |format|
       if @billing_address.update(billing_address_params)
-        format.html { redirect_to @billing_address, notice: 'Billing address was successfully updated.' }
+        format.html { redirect_to order_path(@order.id, step: 2), notice: 'Billing address was successfully updated.' }
         format.json { render :show, status: :ok, location: @billing_address }
       else
         format.html { render :edit }

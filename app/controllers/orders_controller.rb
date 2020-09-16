@@ -41,6 +41,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    OrderSteps.new(@order).call
   end
 
   def edit
@@ -55,6 +56,7 @@ class OrdersController < ApplicationController
     end
   end
 
+
   private
 
     def set_order
@@ -65,6 +67,10 @@ class OrdersController < ApplicationController
       @step_builder = OrderSteps.new(@order)
     end
 
+    # def build_order_steps
+    #   @step_builder = OrderSteps.new(@order, user: current_customer)
+    # end
+
     # def set_credit_card
     #   @credit_card = CreditCard.find(params[:id])
     # end
@@ -74,18 +80,18 @@ class OrdersController < ApplicationController
     end
 
     def order_params
+      # params.require(:order).permit(
+        # :credit_card_id,
+        #         shipping_address: [:street_address, :zip, :city, :phone],
+        #         billing_address_attributes:  [:bil_address, :zip, :city, :phone],
+        #         delivery: [:id],
+        #         shipping: [:check],
+        #         order_id: [:order_id])
       params.require(:order).permit(
-        :credit_card_id,
                 shipping_address: [:street_address, :zip, :city, :phone],
-                billing_address:  [:street_address, :zip, :city, :phone],
+                billing_address_attributes:  [:bil_address, :zip, :city, :phone],
+                credit_card:      [:credit_card_id],
                 delivery: [:id],
-                shipping: [:check],
-                order_id: [:order_id])
-      # params.require(:order).permit
-      # (shipping_address: [:street_address, :zip, :city, :phone],
-      #           billing_address:  [:street_address, :zip, :city, :phone],
-      #           credit_card:      [:credit_card_id],
-      #           delivery: [:id],
-      #           shipping: [:check])
+                shipping: [:check])
     end
 end

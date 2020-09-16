@@ -26,7 +26,7 @@ class CreditCardsController < ApplicationController
   # POST /credit_cards.json
   def create
     @credit_card = @customer.credit_cards.new(credit_card_params)
-
+    # @credit_card = Order.add_card
     respond_to do |format|
       if @credit_card.save
         @customer.update(credit_card_id: @credit_card.id)
@@ -44,7 +44,7 @@ class CreditCardsController < ApplicationController
   def update
     respond_to do |format|
       if @credit_card.update(credit_card_params)
-        format.html { redirect_to @credit_card, notice: 'Credit card was successfully updated.' }
+        format.html { redirect_to order_path(@order.id, step: 1), notice: 'Credit card was successfully updated.' }
         format.json { render :show, status: :ok, location: @credit_card }
       else
         format.html { render :edit }

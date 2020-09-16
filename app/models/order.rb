@@ -6,8 +6,10 @@ class Order < ApplicationRecord
 	belongs_to :customer
 	belongs_to :credit_card, optional: true
 	has_many :order_items, dependent: :destroy
-	has_one :billing_address
+	has_one :billing_address, dependent: :destroy
 	has_one :shipping_address
+
+	accepts_nested_attributes_for :billing_address, allow_destroy: true
 
 	def add_order_item(book_id)
 		@order_item = order_items.find_by(book_id: book_id)
@@ -27,5 +29,7 @@ class Order < ApplicationRecord
 		end
 		update(total_price: total_price)
 	end
+
+
 
 end

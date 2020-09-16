@@ -1,22 +1,18 @@
 
-
-
-
-
-
 <% if current_customer.credit_cards %>
 	<%= form_for @order, authenticity_token: false do |f| %>
 	  <%= f.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
 	  <%= submit_tag("submit") %>
-	  <p><%= link_to "Add card", new_credit_card_path %></p>
 	<% end %>
 <% else %>
   <p><%= link_to "Create credit_card", new_credit_card_path %></p>
 <% end %>
-
-<%= render 'credit_cards/form', credit_card: @credit_card %>
+<br>
+<p>Add card: </p>
+<%= render 'credit_cards/form', credit_card: CreditCard.new %>
 
 
 
 <%#byebug %>
 <p><%#= link_to "Create credit_card", new_credit_card_path %></p>
+<p><%#= link_to "Add card", new_credit_card_path %></p>

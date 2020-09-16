@@ -1,10 +1,10 @@
 
 
-<%= simple_form_for(@order.credit_card) do |f| %>
+<%= simple_form_for(credit_card) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <% if @order.credit_card.errors.any? %>
+    <% if credit_card.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(credit_card.errors.count, "error") %> prohibited this credit_card from being saved:</h2>
         <ul>
@@ -46,6 +46,7 @@
   <div class="btn btn-primary">
     <%= f.button :submit, "ok" %>
   </div>
-  <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 <% end %>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>

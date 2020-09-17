@@ -61,13 +61,12 @@ class OrderSteps
     #   @credit_card = CreditCard.find(params[:id])
     # end
 
-    # def order_params
-    #   params.require(:order).permit(
-    #   :credit_card_id,
-    #         shipping_address: [:street_address, :zip, :city, :phone],
-    #         billing_address:  [:street_address, :zip, :city, :phone],
-    #         delivery: [:id],
-    #         shipping: [:check],
-    #         order_id: [:order_id])
-    # end
+    def order_params
+      params.require(:order).permit(
+                shipping_address: [:street_address, :zip, :city, :phone],
+                billing_address_attributes: [:bil_address, :zip, :city, :phone],
+                credit_card: [:id],
+                delivery: [:id],
+                shipping: [:check])
+    end
 end

@@ -5,9 +5,7 @@ class BillingAddress < ApplicationRecord
 
 private
   def remove_prev_address
-		BillingAddress.destroy_all
-    
+		# BillingAddress.destroy_all
   end
-
   
 end

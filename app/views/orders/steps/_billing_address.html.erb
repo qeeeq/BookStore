@@ -1,13 +1,11 @@
 <p>Card number: <%= @order.credit_card.number %></p>
   
 <% if @order.billing_address %>
-
   <p>Billing address: <%= @order.billing_address.bil_address %></p>
 <% else %>
   <p><%= link_to "Create billing address", new_billing_address_path %></p>
 <% end %>
 
-<%#byebug %>
 <br>
 Change billing address
 <br>
@@ -19,7 +17,9 @@ Change billing address
 	  <%= f.button :submit, "submit" %>
 	</div>
 <% end %>
-<%byebug %>
+
+
+<%#byebug %>
 <%#= render 'billing_addresses/form', billing_address: BillingAddress.new %>
 
 <p><%#= link_to "Change billing address", new_billing_address_path %></p>

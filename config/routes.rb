@@ -4,15 +4,17 @@ Rails.application.routes.draw do
   resources :books
   resources :orders
   # get orders/:status, to "orders#show", as: orders 
-  
-  resources :credit_cards
   # post '/add_to_order/:order_item_id', to: 'orders#add_to_order', as: 'add_to_order'
+  
+  resources :credit_cards do
+    collection do
+      delete :destroy_all
+    end
+  end
+
   resources :order_items #only: %i[create destroy]
   resources :billing_addresses
   resources :shipping_addresses
-
-
-
 
   ActiveAdmin.routes(self)
   

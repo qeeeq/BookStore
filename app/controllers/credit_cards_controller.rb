@@ -1,5 +1,5 @@
 class CreditCardsController < ApplicationController
-  before_action :set_credit_card, only: [:show, :edit, :update, :destroy]
+  before_action :set_credit_card, only: [:show, :edit, :update, :destroy], unless: [:destroy_all]
   before_action :set_customer, only: [:create]
   before_action :set_order
   # GET /credit_cards
@@ -62,6 +62,21 @@ class CreditCardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def destroy_all
+    @credit_cards = current_customer.credit_cards
+    # @events = user.events.where(title: "FIRST")
+    # Or If you just wanted to delete all Events except deleting user events then @events = Event.where(title: "FIRST")
+    # @credit_cards = CreditCard.all 
+    @credit_cards.each do |cc|
+      cc.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to credit_cards_url, notice: 'All credit_cards was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

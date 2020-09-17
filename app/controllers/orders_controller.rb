@@ -18,10 +18,22 @@ class OrdersController < ApplicationController
   end
 
   def update
-    @order.update(order_params)
-    respond_to do |format|
-      format.html { redirect_to :action => "show", :step => 2 }
+    if @order.update(order_params)
+      respond_to do |format|
+        format.html { redirect_to order_path, :step => 2 }
+      end
+    else
+      respond_to do |format|
+        format.html { render order_path, :step => 1 }
+        format.json { render json: @credit_card.errors, status: :unprocessable_entity }
+      end
     end
+
+    if params[:step] == "2"
+      OrderSteps.new(@order).call
+    end
+
+    # byebug
     # if @order.update(order_params)
     #   respond_to do |format|
     #     format.html { redirect_to :action => "show", :step => 2 }
@@ -41,7 +53,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    OrderSteps.new(@order).call
   end
 
   def edit
@@ -81,16 +92,16 @@ class OrdersController < ApplicationController
 
     def order_params
       # params.require(:order).permit(
-        # :credit_card_id,
-        #         shipping_address: [:street_address, :zip, :city, :phone],
-        #         billing_address_attributes:  [:bil_address, :zip, :city, :phone],
-        #         delivery: [:id],
-        #         shipping: [:check],
-        #         order_id: [:order_id])
+      #   :credit_card_id,
+      #           shipping_address: [:street_address, :zip, :city, :phone],
+      #           billing_address_attributes:  [:bil_address, :zip, :city, :phone],
+      #           delivery: [:id],
+      #           shipping: [:check],
+      #           order_id: [:order_id])
       params.require(:order).permit(
+        :credit_card_id,
                 shipping_address: [:street_address, :zip, :city, :phone],
-                billing_address_attributes:  [:bil_address, :zip, :city, :phone],
-                credit_card:      [:credit_card_id],
+                billing_address_attributes: [:bil_address, :zip, :city, :phone],
                 delivery: [:id],
                 shipping: [:check])
     end

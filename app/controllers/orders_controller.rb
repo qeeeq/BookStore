@@ -20,17 +20,13 @@ class OrdersController < ApplicationController
   def update
     if @order.update(order_params)
       respond_to do |format|
-        format.html { redirect_to order_path, :step => 2 }
+        format.html { redirect_to :action => "show", :step => 2 }
       end
     else
       respond_to do |format|
-        format.html { render order_path, :step => 1 }
+        format.html { redirect_to :action => "show", :step => 1 }
         format.json { render json: @credit_card.errors, status: :unprocessable_entity }
       end
-    end
-
-    if params[:step] == "2"
-      OrderSteps.new(@order).call
     end
 
     # byebug
@@ -53,6 +49,9 @@ class OrdersController < ApplicationController
   end
 
   def show
+    if params[:step] == "2"
+      OrderSteps.new(@order).call
+    end
   end
 
   def edit
@@ -71,6 +70,14 @@ class OrdersController < ApplicationController
   private
 
     def set_order
+      # if current_customer.current_order
+      #   @order = current_customer.current_order
+      # else
+      #   respond_to do |format|
+      #     format.html { redirect_to root_path, notice: 'order nil' }
+      #     format.json { head :no_content }
+      #   end
+      # end
       @order = current_customer.current_order
     end
 

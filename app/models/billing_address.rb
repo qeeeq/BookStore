@@ -1,6 +1,6 @@
 class BillingAddress < ApplicationRecord
 	belongs_to :order
-	before_save :remove_prev_address
+	# before_save :remove_prev_address
 	# byebug
 
 private

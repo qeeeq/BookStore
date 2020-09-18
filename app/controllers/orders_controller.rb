@@ -1,10 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order
-  before_action :build_order_steps
+  # before_action :build_order_steps
   respond_to :js, only: [:update]
   respond_to :html
   skip_before_action :verify_authenticity_token
-  before_action :set_customer#, only: [:update]
+  # before_action :set_customer#, only: [:update]
 
 
 	def index
@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
       
       respond_to do |format|
         format.html { redirect_to :action => "show", :step => 2 }
+        # format.html { render 'orders/steps/_billing_address'}
         # OrderSteps.new(@order).call
       end
     else
@@ -71,9 +72,12 @@ class OrdersController < ApplicationController
   def show
     # OrderSteps.new(@order).call
     # @order = Order.find(params[:id])
-    @order.build_billing_address
-    @order.save
-    byebug
+    @order.build_billing_address unless @order.billing_address
+
+    # >>>>> @order.build_shipping_address unless @order.shipping_address
+
+    # @order.save
+    # byebug
   end
 
   def edit
@@ -99,12 +103,13 @@ class OrdersController < ApplicationController
       #     format.json { head :no_content }
       #   end
       # end
+      # byebug
       @order = current_customer.current_order
     end
 
-    def build_order_steps
-      @step_builder = OrderSteps.new(@order)
-    end
+    # def build_order_steps
+    #   @step_builder = OrderSteps.new(@order)
+    # end
 
     # def build_order_steps
     #   @step_builder = OrderSteps.new(@order, user: current_customer)
@@ -114,23 +119,22 @@ class OrdersController < ApplicationController
     #   @credit_card = CreditCard.find(params[:id])
     # end
 
-    def set_customer
-      @customer = current_customer
-    end
+    # def set_customer
+    #   @customer = current_customer
+    # end
 
     def order_params
-      # params.require(:order).permit(
-      #   :credit_card_id,
-      #           shipping_address: [:street_address, :zip, :city, :phone],
-      #           billing_address_attributes:  [:bil_address, :zip, :city, :phone],
-      #           delivery: [:id],
-      #           shipping: [:check],
-      #           order_id: [:order_id])
       params.require(:order).permit(
-                credit_card:[:id],
-                billing_address_attributes: [:_destroy, :bil_address, :zip, :city, :phone],
+        :credit_card_id,
                 shipping_address: [:street_address, :zip, :city, :phone],
+                billing_address_attributes:  [:id, :bil_address, :zip, :city, :phone],
                 delivery: [:id],
                 shipping: [:check])
+      # params.require(:order).permit(
+      #           credit_card_attributes: [:credit_card_id],
+      #           billing_address_attributes: [:_destroy, :bil_address, :zip, :city, :phone],
+      #           shipping_address: [:street_address, :zip, :city, :phone],
+      #           delivery: [:id],
+      #           shipping: [:check])
     end
 end

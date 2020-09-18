@@ -11,12 +11,15 @@ class Customer < ApplicationRecord
 	has_many :orders
 	has_many :credit_cards
 	has_many :addresses
+
+	accepts_nested_attributes_for :credit_cards
 	
 	def name
 		"#{first_name} #{last_name}"
 	end
 
 	def current_order
+		# byebug
 		@current_order ||= orders.find_or_create_by(status: :in_progress)
 	end
 	

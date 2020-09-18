@@ -1,5 +1,6 @@
 class OrderSteps
   attr_reader :order
+  
   #, :user
   # include AbstractController::Rendering
 
@@ -15,6 +16,8 @@ class OrderSteps
 
   def call
     @order.build_billing_address
+    # BillingAddress.new
+    # @order.billing_address || BillingAddress.new
   end
 
   def update_credit_card#(credit_card_params)
@@ -56,6 +59,8 @@ class OrderSteps
     def set_customer
       @customer = current_customer
     end
+
+
 
     # def set_credit_card
     #   @credit_card = CreditCard.find(params[:id])

@@ -1,18 +1,18 @@
 class BillingAddressesController < ApplicationController
   # before_action :set_billing_address, only: [:show, :edit, :update, :destroy]
-  # before_action :set_order#, only: [:create]
+  before_action :set_order#, only: [:create]
   # before_action :set_customer, only: [:create]
   # # GET /billing_addresses
   # # GET /billing_addresses.json
-  # def index
-  #   @billing_addresses = @order.billing_address
-  #   # @billing_addresses = BillingAddress.all
-  # end
+  def index
+    @billing_addresses = @order.billing_address
+    # @billing_addresses = BillingAddress.all
+  end
 
   # # GET /billing_addresses/1
   # # GET /billing_addresses/1.json
-  # def show
-  # end
+  def show
+  end
 
   # # GET /billing_addresses/new
   # def new
@@ -86,8 +86,8 @@ class BillingAddressesController < ApplicationController
   #     @customer = current_customer
   #   end
 
-  #   def set_order
-  #     @order = current_customer.current_order
-  #   end
+    def set_order
+      @order = current_customer.current_order
+    end
 
 end

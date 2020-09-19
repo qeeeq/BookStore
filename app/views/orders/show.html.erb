@@ -9,19 +9,19 @@
 <% case params[:step]
 		 when '1' %>
 		<%= render 'orders/steps/credit_card' %>
+		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+
+
 	<% when '2' %> 
 		<%= render 'orders/steps/billing_address' %>
+		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+		<p><%= link_to "Prev", order_path(@order.id, step: params[:step].to_i - 1) %></p>
+
 	<% when '3' %> 
 		<%= render 'orders/steps/order_total' %>
-<% end %>
-
-<% if params[:step] == "1" %>
-<br>
-	<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-<% elsif params[:step] == "2" %>
-	<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-<% else %>
-	<p><%= link_to "Next", order_path(@order.id, step: 1) %></p>
+		<p><%= link_to "Prev", order_path(@order.id, step: params[:step].to_i - 1) %></p>
+		
+	<%# else %>
 <% end %>
 
 

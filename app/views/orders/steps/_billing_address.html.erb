@@ -6,11 +6,11 @@
   <p><%= link_to "Create billing address", new_billing_address_path %></p>
 <% end %>
 	  
-<%# if @order.shipping_address %>
-  <p>Shipping address: <%#= @order.shipping_address.ship_address %></p>
-<%# else %>
+<% if @order.shipping_address %>
+  <p>Shipping address: <%= @order.shipping_address.ship_address %></p>
+<% else %>
   <p><%= link_to "Create shipping address", new_shipping_address_path %></p>
-<%# end %>
+<% end %>
 
 <br>
 Change billing address:
@@ -25,6 +25,13 @@ Change billing address:
 <br>
 Change shipping address:
 <br>
+
+<%= simple_form_for(@order, method: :put) do |f| %>
+  <%= f.fields_for :shipping_address do |shipping_address| %>
+    <%= shipping_address.input :ship_address %>
+	<% end %>
+	<p><%= f.submit "Submit" %></p>
+<% end %>
 
 <%#byebug %>
 <%#= render 'billing_addresses/form', billing_address: BillingAddress.new %>

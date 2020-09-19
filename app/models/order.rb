@@ -10,6 +10,7 @@ class Order < ApplicationRecord
 	has_one :shipping_address
 
 	accepts_nested_attributes_for :billing_address#, allow_destroy: true
+	accepts_nested_attributes_for :shipping_address
 
 	def add_order_item(book_id)
 		@order_item = order_items.find_by(book_id: book_id)

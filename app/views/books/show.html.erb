@@ -1,13 +1,24 @@
 <p id="notice"><%= notice %></p>
 
+<div style = "width:100px; height:auto">
+  <%= image_tag "https://editus.ru/img/services/verstka/cover_3.jpg", style: 'width:100%'%>
+</div>
+
 <p>
   <strong>Title:</strong>
   <%= @book.title %>
 </p>
 
 <p>
-  <strong>Price:</strong>
-  <%= @book.price %>
+  <strong>Author:</strong>
+  <%= @book.author.name %>
+</p>
+
+<p class="card-text"><%= @book.description %></p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @book.category.title %>
 </p>
 
 <p>
@@ -16,14 +27,8 @@
 </p>
 
 <p>
-  <strong>Author:</strong>
-  <%= @book.author.name %>
+  <strong>Price:</strong>
+  <%= @book.price %>
 </p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @book.category.title %>
-</p>
-
 
 <%= link_to 'Back', books_path %>

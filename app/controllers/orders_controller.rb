@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
   def show
     if params[:step] == "2"
       @order.build_billing_address unless @order.billing_address
+      @order.build_shipping_address unless @order.shipping_address
     end
     # >>>>> @order.build_shipping_address unless @order.shipping_address
 
@@ -75,16 +76,9 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(
-        :credit_card_id,
-                shipping_address: [:street_address, :zip, :city, :phone],
-                billing_address_attributes:  [:id, :bil_address, :zip, :city, :phone],
-                delivery: [:id],
-                shipping: [:check])
-      # params.require(:order).permit(
-      #           credit_card_attributes: [:credit_card_id],
-      #           billing_address_attributes: [:_destroy, :bil_address, :zip, :city, :phone],
-      #           shipping_address: [:street_address, :zip, :city, :phone],
-      #           delivery: [:id],
-      #           shipping: [:check])
+                :credit_card_id,
+                billing_address_attributes: [:id, :bil_address, :zip, :city, :phone],
+                shipping_address_attributes: [:id, :ship_address, :zip, :city, :phone],
+                delivery: [:id])
     end
 end

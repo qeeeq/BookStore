@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_130959) do
+ActiveRecord::Schema.define(version: 2020_09_19_162108) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -137,7 +137,9 @@ ActiveRecord::Schema.define(version: 2020_09_08_130959) do
     t.integer "customer_id"
     t.integer "credit_card_id"
     t.integer "billing_address_id"
+    t.integer "shipping_address_id"
     t.index ["billing_address_id"], name: "index_orders_on_billing_address_id"
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -153,6 +155,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_130959) do
     t.string "ship_address"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.index ["order_id"], name: "index_shipping_addresses_on_order_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

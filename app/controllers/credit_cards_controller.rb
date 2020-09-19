@@ -2,31 +2,23 @@ class CreditCardsController < ApplicationController
   before_action :set_credit_card, only: [:show, :edit, :update, :destroy], unless: [:destroy_all]
   before_action :set_customer, only: [:create]
   before_action :set_order
-  # GET /credit_cards
-  # GET /credit_cards.json
+
   def index
     @credit_cards = current_customer.credit_cards
   end
 
-  # GET /credit_cards/1
-  # GET /credit_cards/1.json
   def show
   end
 
-  # GET /credit_cards/new
   def new
     @credit_card = CreditCard.new
   end
 
-  # GET /credit_cards/1/edit
   def edit
   end
 
-  # POST /credit_cards
-  # POST /credit_cards.json
   def create
     @credit_card = @customer.credit_cards.new(credit_card_params)
-    # @credit_card = Order.add_card
     respond_to do |format|
       if @credit_card.save
         @customer.update(credit_card_id: @credit_card.id)
@@ -39,8 +31,6 @@ class CreditCardsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /credit_cards/1
-  # PATCH/PUT /credit_cards/1.json
   def update
     respond_to do |format|
       if @credit_card.update(credit_card_params)
@@ -53,8 +43,6 @@ class CreditCardsController < ApplicationController
     end
   end
 
-  # DELETE /credit_cards/1
-  # DELETE /credit_cards/1.json
   def destroy
     @credit_card.destroy
     respond_to do |format|
@@ -65,9 +53,7 @@ class CreditCardsController < ApplicationController
 
   def destroy_all
     @credit_cards = current_customer.credit_cards
-    # @events = user.events.where(title: "FIRST")
-    # Or If you just wanted to delete all Events except deleting user events then @events = Event.where(title: "FIRST")
-    # @credit_cards = CreditCard.all 
+
     @credit_cards.each do |cc|
       cc.destroy
     end
@@ -76,7 +62,6 @@ class CreditCardsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

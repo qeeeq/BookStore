@@ -74,15 +74,14 @@
 
 <main role="main">
   <section class="jumbotron text-center">
-      <% if customer_signed_in? %>
+    <% if customer_signed_in? %>
     <br>
-        <div style="text-align: left">Logged in as <span style="color:green"><%= current_customer.email %></span></div>
-      <%end%>
-    <div class="container">
+      <div style="text-align: left">Logged in as <span style="color:green"><%= current_customer.email %></span></div>
+    <%end%>
 
+    <div class="container">
       <h1 class="jumbotron-heading">Books example</h1>
       <p class="lead text-muted">Something short and leading about the collection bla-bla.</p>
-
       <%= form_with(url: root_path, method: "get", local: true) do %>
         <%= label_tag(:q, "Search for:") %>
         <%= text_field_tag :q, params[:q]%>

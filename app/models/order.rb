@@ -29,7 +29,5 @@ class Order < ApplicationRecord
 		end
 		update(total_price: total_price)
 	end
-
-
-
+	
 end

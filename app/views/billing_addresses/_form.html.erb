@@ -4,36 +4,3 @@
     <%= billing_address.input :bil_address %>
   <% end %>
 <% end %>
-
-<!-- 
-<%= simple_form_for(billing_address, url: "/orders/#{@order.id}", method: :patch) do |f| %>
-
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-    <% if billing_address.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(billing_address.errors.count, "error") %> prohibited this billing_address from being saved:</h2>
-        <ul>
-          <% billing_address.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-  <div class="form-inputs">
-  	<%= f.input :bil_address,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "bil_address", name: 'order[billing_address_attributes][bil_address]' }%>
-  </div>
-
-  <div class="btn btn-primary">
-    <%= f.button :submit, "submit" %>
-  </div>
-<% end %>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-
- -->

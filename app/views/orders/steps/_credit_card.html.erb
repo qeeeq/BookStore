@@ -11,6 +11,12 @@
 <p>Add card: </p>
 <%= render 'credit_cards/form', credit_card: CreditCard.new %>
 
+<br>
+<%= link_to credit_cards_path do %>
+  <button type="button" class="btn btn-primary my-2">My credit cards</button>
+<%end%>
+
+
 
 
 <%#byebug %>

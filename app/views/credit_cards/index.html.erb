@@ -33,5 +33,5 @@
 <%= link_to 'Destroy all', destroy_all_credit_cards_url, method: :delete, data: { confirm: 'Are you sure?' } %>
 <br>
 <p><%= link_to 'New Credit Card', new_credit_card_path %></p>
-<p><%= link_to "Next", orders_path(step: 2) %></p>
+<p><%= link_to "Back", order_path(@order.id, step: 1) %></p>
 

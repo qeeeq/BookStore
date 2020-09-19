@@ -1,11 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order
-  # before_action :build_order_steps
+  skip_before_action :verify_authenticity_token
   respond_to :js, only: [:update]
   respond_to :html
-  skip_before_action :verify_authenticity_token
   # before_action :set_customer#, only: [:update]
-
+  # before_action :build_order_steps
 
 	def index
     @orders = Order.all
@@ -18,16 +17,9 @@ class OrdersController < ApplicationController
   end
 
   def update
-    # byebug
-    # BillingAddress.new
-    # @order.update(billing_address: [:id])
     if @order.update(order_params)
-      # @order.build_billing_address
-      
       respond_to do |format|
         format.html { redirect_to :action => "show", :step => 2 }
-        # format.html { render 'orders/steps/_billing_address'}
-        # OrderSteps.new(@order).call
       end
     else
       respond_to do |format|
@@ -35,49 +27,15 @@ class OrdersController < ApplicationController
         format.json { render json: @credit_card.errors, status: :unprocessable_entity }
       end
     end
-
-
-    # case params[:step]
-    #   when '1'
-    #     if @order.update(order_params)
-    #       respond_to do |format|
-    #         format.html { redirect_to :action => "show", :step => 2 }
-    #       end
-    #     else
-    #       respond_to do |format|
-    #         format.html { redirect_to :action => "show", :step => 1 }
-    #         format.json { render json: @credit_card.errors, status: :unprocessable_entity }
-    #       end
-    #     end
-    #   when '2'
-    #     OrderSteps.new(@order).call
-    #     if @order.update(order_params)
-    #       respond_to do |format|
-    #         format.html { redirect_to :action => "show", :step => 3 }
-    #       end
-    #     end
-    # end
-
-    # byebug
-    # if @order.update(order_params)
-    #   respond_to do |format|
-    #     format.html { redirect_to :action => "show", :step => 2 }
-    #     format.json { render :show, status: :updated, location: @order }
-    #   end
-    # else
-    #   redirect_to root_path
-    # end
   end
 
   def show
-    # OrderSteps.new(@order).call
-    # @order = Order.find(params[:id])
-    @order.build_billing_address unless @order.billing_address
-
+    if params[:step] == "2"
+      @order.build_billing_address unless @order.billing_address
+    end
     # >>>>> @order.build_shipping_address unless @order.shipping_address
 
-    # @order.save
-    # byebug
+    # OrderSteps.new(@order).call
   end
 
   def edit
@@ -95,15 +53,6 @@ class OrdersController < ApplicationController
   private
 
     def set_order
-      # if current_customer.current_order
-      #   @order = current_customer.current_order
-      # else
-      #   respond_to do |format|
-      #     format.html { redirect_to root_path, notice: 'order nil' }
-      #     format.json { head :no_content }
-      #   end
-      # end
-      # byebug
       @order = current_customer.current_order
     end
 
@@ -122,6 +71,7 @@ class OrdersController < ApplicationController
     # def set_customer
     #   @customer = current_customer
     # end
+    # byebug
 
     def order_params
       params.require(:order).permit(

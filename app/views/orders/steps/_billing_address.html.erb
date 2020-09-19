@@ -1,13 +1,19 @@
 <p>Card number: <%= @order.credit_card.number %></p>
-  
+
 <% if @order.billing_address %>
   <p>Billing address: <%= @order.billing_address.bil_address %></p>
 <% else %>
   <p><%= link_to "Create billing address", new_billing_address_path %></p>
 <% end %>
+	  
+<%# if @order.shipping_address %>
+  <p>Shipping address: <%#= @order.shipping_address.ship_address %></p>
+<%# else %>
+  <p><%= link_to "Create shipping address", new_shipping_address_path %></p>
+<%# end %>
 
 <br>
-Change billing address
+Change billing address:
 <br>
 <%= simple_form_for(@order, method: :put) do |f| %>
   <%= f.fields_for :billing_address do |billing_address| %>
@@ -16,9 +22,9 @@ Change billing address
 	<p><%= f.submit "Submit" %></p>
 <% end %>
 
-
+<br>
+Change shipping address:
+<br>
 
 <%#byebug %>
 <%#= render 'billing_addresses/form', billing_address: BillingAddress.new %>
-
-<p><%#= link_to "Change billing address", new_billing_address_path %></p>

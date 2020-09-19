@@ -11,8 +11,6 @@
 	<%= render 'orders/steps/credit_card' %>
 	<% when '2' %> 
 	<%= render 'orders/steps/billing_address' %>
-	<% when '3' %> 
-	<%= render 'orders/steps/shipping_address' %>
 <% end %>
 
 <% if params[:step] == "1" %>

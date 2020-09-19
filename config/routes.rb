@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :customers
   root "books#index"
+  get '/customers/:id', to: 'customers#show', as: 'customer'
   resources :books
   resources :orders
   # get orders/:status, to "orders#show", as: orders 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   resources :order_items #only: %i[create destroy]
   resources :billing_addresses
   resources :shipping_addresses
+  
 
   ActiveAdmin.routes(self)
   

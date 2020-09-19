@@ -6,12 +6,14 @@ class Customer < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
+
 	
 	has_many :ratings
 	has_many :orders
 	has_many :credit_cards
-	has_many :addresses
+	has_one :addresses
 
+  accepts_nested_attributes_for :addresses
 	accepts_nested_attributes_for :credit_cards
 	
 	def name

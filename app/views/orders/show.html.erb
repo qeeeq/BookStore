@@ -1,13 +1,9 @@
 <%= render 'form', order: @order %>
 
-<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
-<p><%= link_to 'Back', books_path %></p>
-
 <% case params[:step]
 		 when '1' %>
 		<%= render 'orders/steps/credit_card' %>
 		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-
 
 	<% when '2' %> 
 		<%= render 'orders/steps/billing_address' %>
@@ -23,6 +19,11 @@
 <% end %>
 
 
+<% if @order %>
+	<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
+<% end %>
+
+	<p><%= link_to 'Back', books_path %></p>
 
 
 

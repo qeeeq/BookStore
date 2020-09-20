@@ -4,12 +4,12 @@
 <br>
 <p>First name: <%= @customer.first_name %></p>
 <p>Last name: <%= @customer.last_name %></p>
-
-<%# if @customer.address %>
-  <p>Address: <%#= @customer.addresses.address %></p>
-<%# else %>
+<%#byebug%>
+<% if @customer.addresses %>
+  <p>Address: <%= @customer.addresses.address %></p>
+<% else %>
   <p>Address: nil</p>
-<%# end %>
+<% end %>
 
 <%= simple_form_for(@customer, method: :put) do |f| %>
   <%= f.fields_for :addresses do |address| %>

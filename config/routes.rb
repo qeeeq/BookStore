@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :customers
   root "books#index"
   get '/customers/:id', to: 'customers#show', as: 'customer'
+  put '/customers/:id', to: 'customers#update', as: 'customer_update'
+
   resources :books
   resources :orders
   # get orders/:status, to "orders#show", as: orders 

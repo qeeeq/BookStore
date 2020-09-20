@@ -10,9 +10,9 @@ class Customer < ApplicationRecord
 	has_many :ratings
 	has_many :orders
 	has_many :credit_cards
-	has_one :addresses
+	has_one :address
 
-  # accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address
 	accepts_nested_attributes_for :credit_cards
 	
 	def name

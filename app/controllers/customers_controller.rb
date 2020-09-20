@@ -1,13 +1,17 @@
 class CustomersController < ApplicationController
 	before_action :set_customer#, only: [:create]
 
-	def show
-		byebug
-		@customer.build_address unless @customer.address
+	def update
+		if @customer.update(params1)
+			respond_to do |format|
+				format.html { redirect_to :action => "show" }
+			end
+		end
 	end
 
-	def update
-		@customer.update
+	def show
+		# byebug
+		@customer.build_address unless @customer.address
 	end
 
 	private
@@ -15,12 +19,9 @@ class CustomersController < ApplicationController
     @customer = current_customer
   end
 
-	def permited_params
-		params.require(:order).permit(address_attributes: [:id, :address])
+	def params1
+		params.require(:customer).permit(address_attributes: [:id, :address])
 
 		# params.fetch(:user).permit(credit_cards: [:id, :cvv], addresses: [])
 	end
 end
-
-
-# /customers/my_profile, to: 'customers#show', as: tratata

@@ -25,7 +25,6 @@ Change billing address:
 <br>
 Change shipping address:
 <br>
-
 <%= simple_form_for(@order, method: :put) do |f| %>
   <%= f.fields_for :shipping_address do |shipping_address| %>
     <%= shipping_address.input :ship_address %>

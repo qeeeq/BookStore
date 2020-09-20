@@ -21,6 +21,11 @@
           <%end%>
         </a>
         <a class="dropdown-item" href="#">
+          <%= link_to credit_cards_path do %>
+            <button type="button" class="btn btn-primary my-2">My credit cards</button>
+          <%end%>
+        </a>
+        <a class="dropdown-item" href="#">
           <%= link_to billing_addresses_path do%>
             <button type="button" class="btn btn-primary my-2">My billing_addresses</button>
           <%end%>
@@ -34,12 +39,10 @@
     </div>
 
     <% if current_customer %>
-      <%= link_to order_path(current_customer.current_order, step: 3) do %>
+      <%= link_to order_path(current_customer.current_order) do %>
         <button type="button" class="btn btn-primary my-2">My current order</button>
       <%end%>
-      <%= link_to credit_cards_path do %>
-        <button type="button" class="btn btn-primary my-2">My credit cards</button>
-      <%end%>
+
       <%= link_to customer_path(current_customer) do%>
         <button type="button" class="btn btn-primary my-2">My profile</button>
       <%end%>

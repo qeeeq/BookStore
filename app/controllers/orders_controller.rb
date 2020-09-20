@@ -52,33 +52,32 @@ class OrdersController < ApplicationController
   end
 
   private
+  def set_order
+    @order = current_customer.current_order
+  end
 
-    def set_order
-      @order = current_customer.current_order
-    end
+  # def build_order_steps
+  #   @step_builder = OrderSteps.new(@order)
+  # end
 
-    # def build_order_steps
-    #   @step_builder = OrderSteps.new(@order)
-    # end
+  # def build_order_steps
+  #   @step_builder = OrderSteps.new(@order, user: current_customer)
+  # end
 
-    # def build_order_steps
-    #   @step_builder = OrderSteps.new(@order, user: current_customer)
-    # end
+  # def set_credit_card
+  #   @credit_card = CreditCard.find(params[:id])
+  # end
 
-    # def set_credit_card
-    #   @credit_card = CreditCard.find(params[:id])
-    # end
+  # def set_customer
+  #   @customer = current_customer
+  # end
+  # byebug
 
-    # def set_customer
-    #   @customer = current_customer
-    # end
-    # byebug
-
-    def order_params
-      params.require(:order).permit(
-                :credit_card_id,
-                billing_address_attributes: [:id, :bil_address, :zip, :city, :phone],
-                shipping_address_attributes: [:id, :ship_address, :zip, :city, :phone],
-                delivery: [:id])
-    end
+  def order_params
+    params.require(:order).permit(
+              :credit_card_id,
+              billing_address_attributes: [:id, :bil_address, :zip, :city, :phone],
+              shipping_address_attributes: [:id, :ship_address, :zip, :city, :phone],
+              delivery: [:id])
+  end
 end

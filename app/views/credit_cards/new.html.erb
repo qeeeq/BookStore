@@ -2,7 +2,7 @@
 
 <%= render 'form', credit_card: @credit_card %>
 
-<%= link_to 'Back', credit_cards_path %>
+<p><%= link_to "Prev", order_path(@order.id, step: 1) %></p>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>

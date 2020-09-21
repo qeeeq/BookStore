@@ -1,20 +1,18 @@
 <% if @order.credit_card.present? %>
-	<p>Card number: <%= @order.credit_card.number %></p>
+	<br><p>Card number: <%= @order.credit_card.number %></p>
+	<p><%= link_to "Edit card", order_path(@order.id, step: 1) %></p>
+	<% if @order.billing_address.present? & @order.shipping_address.present? %>
+		<p>Billing address: <%= @order.billing_address.bil_address %></p>
+		<p>Shipping address: <%= @order.shipping_address.ship_address %></p>
+		<p><%= link_to "Edit addresses", order_path(@order.id, step: 2) %></p>
+	<% else %>
+		<p><%= link_to "Add billing & shipping addresses", order_path(@order.id, step: 2) %></p>
+	<% end %>
 <% else %>
-	<p>Card number:</p>
+	<p>Need credit card first!</p>
+	<p><%= link_to "add card", order_path(@order.id, step: 1) %></p>
 <% end %>
 
-<% if @order.billing_address.present? %>
-	<p>Billing address: <%= @order.billing_address.bil_address %></p>
-<% else %>
-	<p>Billing address:</p>
-<% end %>
-
-<% if @order.shipping_address.present? %>
-	<p>Shipping address: <%= @order.shipping_address.ship_address %></p>
-<% else %>
-	<p>Shipping address:</p>
-<% end %>
 
 
 

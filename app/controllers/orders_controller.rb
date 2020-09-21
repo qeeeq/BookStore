@@ -36,11 +36,26 @@ class OrdersController < ApplicationController
         @order.build_shipping_address unless @order.shipping_address
       else
         respond_to do |format|
-          format.html { redirect_to :back, notice: 'Please cc.' }
+          format.html { redirect_to :action => "show", :step => 1 }
+          flash.now[:notice] = "noticenoticenotice"
         end
       end
     end
-
+    
+    if params[:step] == "3"
+      byebug
+      if @order.credit_card.blank? || @order.billing_address.present? || @order.shipping_address.present?
+        respond_to do |format|
+          format.html { redirect_to :action => "show", :step => 1 }
+          flash.now[:notice] = "noticenoticenotice"
+        end
+      # else
+      #   respond_to do |format|
+      #     format.html { redirect_to :action => "show", :step => 3 }
+      #     flash.now[:notice] = "noticenoticenotice"
+      #   end
+      end
+    end
     # OrderSteps.new(@order).call
   end
 

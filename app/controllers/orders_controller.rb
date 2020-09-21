@@ -31,10 +31,15 @@ class OrdersController < ApplicationController
 
   def show
     if params[:step] == "2"
-      @order.build_billing_address unless @order.billing_address
-      @order.build_shipping_address unless @order.shipping_address
+      if @order.credit_card.present? 
+        @order.build_billing_address unless @order.billing_address
+        @order.build_shipping_address unless @order.shipping_address
+      else
+        respond_to do |format|
+          format.html { redirect_to :back, notice: 'Please cc.' }
+        end
+      end
     end
-    # >>>>> @order.build_shipping_address unless @order.shipping_address
 
     # OrderSteps.new(@order).call
   end

@@ -4,7 +4,7 @@
 		 when '1' %>
 		<%= render 'orders/steps/credit_card' %>
 		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-	<% when '2' %> 
+	<% when '2' %>
 		<%= render 'orders/steps/billing_address' %>
 		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
 		<p><%= link_to "Prev", order_path(@order.id, step: params[:step].to_i - 1) %></p>

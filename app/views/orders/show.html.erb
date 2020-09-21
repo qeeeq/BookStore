@@ -4,41 +4,18 @@
 		 when '1' %>
 		<%= render 'orders/steps/credit_card' %>
 		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
-
 	<% when '2' %> 
 		<%= render 'orders/steps/billing_address' %>
 		<p><%= link_to "Сonfirm and next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
 		<p><%= link_to "Prev", order_path(@order.id, step: params[:step].to_i - 1) %></p>
-
 	<% when '3' %> 
 		<%= render 'orders/steps/order_total' %>
 		<p><%= link_to "Prev", order_path(@order.id, step: params[:step].to_i - 1) %></p>
-		
 	<% else %>
-	<p><%= link_to "Next", order_path(@order.id, step: params[:step].to_i + 1) %></p>
+		<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
+		<%= render 'orders/steps/order_total' %>
 <% end %>
 
+<p><%= link_to 'Back', books_path %></p>
 
-<% if @order %>
-	<p><%= link_to "Destroy Order", @order, data: { confirm: 'Are you sure?' }, method: :delete %></p>
-<% end %>
-
-	<p><%= link_to 'Back', books_path %></p>
-
-
-
-
-
-
-<!-- 	link_to prev 
-	if '1'
-  next
-  elsif '4'
-  prev
-  else
-  next
-  prev
-  end
-
--->
 

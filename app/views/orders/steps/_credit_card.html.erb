@@ -1,13 +1,10 @@
 
-<% if current_customer.credit_cards %>
-	<%= form_for @order, authenticity_token: false do |f| %>
+<% if current_customer.credit_cards.present? %>
+  <%= form_for @order, authenticity_token: false do |f| %>
 	  <%= f.collection_select(:credit_card_id, current_customer.credit_cards, :id, :number) %>
 	  <%= submit_tag("submit") %>
 	<% end %>
-<% else %>
-  <p><%= link_to "Create credit_card", new_credit_card_path %></p>
 <% end %>
-
 
 <div class="btn btn-link">
 	<%= link_to "All credit cards", credit_cards_path %>

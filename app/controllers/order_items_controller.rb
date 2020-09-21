@@ -8,7 +8,7 @@ class OrderItemsController < ApplicationController
 	def create
 		@order.add_order_item(params[:book_id])
 		respond_to do |format|
-			format.html { redirect_to @order, notice: 'Successfully added product to order.' }
+			format.html { redirect_to order_path(@order.id, step: params[:step].to_i + 1), notice: 'Successfully added product to order.' }
 			# format.html { redirect_to order_path(current_customer.current_order, step: 1), notice: 'Successfully added product to order.' }
 		end
 	end

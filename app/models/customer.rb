@@ -21,7 +21,10 @@ class Customer < ApplicationRecord
 
 	def current_order
 		# byebug
-		@current_order ||= orders.find_or_create_by(status: :in_progress)
+		if params[:step] == "1"
+			@current_order ||= orders.find_or_create_by(status: :in_progress)
+		end
+		@order = current_customer.current_order
 	end
 	
 end

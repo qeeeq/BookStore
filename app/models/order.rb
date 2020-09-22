@@ -6,8 +6,8 @@ class Order < ApplicationRecord
 	belongs_to :customer
 	belongs_to :credit_card, optional: true
 	has_many :order_items, dependent: :destroy
-	has_one :billing_address, dependent: :destroy
-	has_one :shipping_address
+	has_one :billing_address#, dependent: :destroy
+	has_one :shipping_address#, dependent: :destroy
 
 	accepts_nested_attributes_for :billing_address#, allow_destroy: true
 	accepts_nested_attributes_for :shipping_address

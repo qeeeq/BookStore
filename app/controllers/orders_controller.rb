@@ -30,6 +30,12 @@ class OrdersController < ApplicationController
   end
 
   def show
+    # if @order.credit_card.blank?
+    #   respond_to do |format|
+    #     format.html { redirect_to :action => "show", :step => 1 }
+    #   end
+    # end
+
     if params[:step] == "2"
       if @order.credit_card.present? 
         @order.build_billing_address unless @order.billing_address
@@ -43,18 +49,14 @@ class OrdersController < ApplicationController
     end
     
     if params[:step] == "3"
-      byebug
-      if @order.credit_card.blank? || @order.billing_address.present? || @order.shipping_address.present?
+      # byebug
+      if @order.credit_card.blank? || @order.billing_address.blank? || @order.shipping_address.blank?
         respond_to do |format|
           format.html { redirect_to :action => "show", :step => 1 }
           flash.now[:notice] = "noticenoticenotice"
         end
-      # else
-      #   respond_to do |format|
-      #     format.html { redirect_to :action => "show", :step => 3 }
-      #     flash.now[:notice] = "noticenoticenotice"
-      #   end
       end
+      @order.update(status: :completed)
     end
     # OrderSteps.new(@order).call
   end

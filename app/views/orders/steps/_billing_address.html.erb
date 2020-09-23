@@ -13,22 +13,15 @@
 <% end %>
 
 <br>
-Change billing address:
+Change billing address & shipping address:
 <br>
 <%= simple_form_for(@order, method: :put) do |f| %>
   <%= f.fields_for :billing_address do |billing_address| %>
     <%= billing_address.input :bil_address %>
 	<% end %>
-	<p><%= f.submit "Submit" %></p>
-<% end %>
-
-<br>
-Change shipping address:
-<br>
-<%= simple_form_for(@order, method: :put) do |f| %>
-  <%= f.fields_for :shipping_address do |shipping_address| %>
+    <%= f.fields_for :shipping_address do |shipping_address| %>
     <%= shipping_address.input :ship_address %>
-	<% end %>
+  <% end %>
 	<p><%= f.submit "Submit" %></p>
 <% end %>
 

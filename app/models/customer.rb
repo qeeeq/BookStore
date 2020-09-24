@@ -20,8 +20,13 @@ class Customer < ApplicationRecord
 	end
 
 	def current_order
-		byebug
-		@current_order ||= orders.find_or_create_by(status: :in_progress)
+		
+		@completed_order = Order.find_by(status: :completed)
+		if @completed_order
+			@current_order = @completed_order
+		else
+			@current_order ||= orders.find_or_create_by(status: :in_progress)
+		end
 	end
-	
+	# byebug
 end

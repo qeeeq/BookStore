@@ -81,6 +81,9 @@ class OrdersController < ApplicationController
         @order.update(status: :completed)
       end
     end
+    if @current_step["step"] == "4"
+      @order.update(status: :shipped)
+    end
     # OrderSteps.new(@order).call
   end
 

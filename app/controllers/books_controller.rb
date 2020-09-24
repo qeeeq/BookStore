@@ -1,8 +1,6 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: :show
+  before_action :set_book, only: [:update, :show]
 
-  # GET /books
-  # GET /books.json
   def index
     @books = Book.all
 
@@ -20,22 +18,46 @@ class BooksController < ApplicationController
       # @books = Book.where("title LIKE ?", "%#{:q}%").joins(:authors).where("name LIKE = ?", "%#{params[:q]}%")
       # @books = Author.where("name LIKE = ?", "%#{params[:q]}%").joins(:books).where("title LIKE = ?", "%#{params[:q]}%")
       # @books = Book.joins(:authors).where("title LIKE ?", "%#{params[:q]}%")
-
     else
       @books = Book.all
     end
   end
 
+  def update
+    # byebug
+    if @book.update!(book_params)
+      respond_to do |format|
+        format.html { redirect_to :action => "show" }                     
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to :action => "show" }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /books/1
   # GET /books/1.json
+
   def show
+    # byebug
+    # @book.build_ratings unless @book.ratings
+    # @book.ratings.build unless @book.ratings.blank?
+    if @book.ratings.blank?
+      @book.ratings.build
+      @book.ratings
+    end
+    # byebug
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def book_params
+    params.require(:book).permit(ratings_attributes: [:id, :rating_number])
   end
 
 end

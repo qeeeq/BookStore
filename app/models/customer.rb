@@ -20,7 +20,6 @@ class Customer < ApplicationRecord
 	end
 
 	def current_order
-		
 		@completed_order = Order.find_by(status: :completed)
 		if @completed_order
 			@current_order = @completed_order

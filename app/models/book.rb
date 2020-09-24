@@ -10,6 +10,8 @@ class Book < ApplicationRecord
 
 	has_one_attached :image
 
+	accepts_nested_attributes_for :ratings
+
 	self.per_page = 2
 
 	def book_title

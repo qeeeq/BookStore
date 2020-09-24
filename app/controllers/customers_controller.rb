@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
 	before_action :set_customer#, only: [:create]
 
 	def update
-		if @customer.update(params1)
+		if @customer.update(address_params)
 			respond_to do |format|
 				format.html { redirect_to :action => "show" }
 			end
@@ -19,7 +19,7 @@ class CustomersController < ApplicationController
     @customer = current_customer
   end
 
-	def params1
+	def address_params
 		params.require(:customer).permit(address_attributes: [:id, :address])
 
 		# params.fetch(:user).permit(credit_cards: [:id, :cvv], addresses: [])

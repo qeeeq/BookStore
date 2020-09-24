@@ -41,11 +41,11 @@ class BooksController < ApplicationController
   # GET /books/1.json
 
   def show
-    # byebug
+    byebug
     # @book.build_ratings unless @book.ratings
     # @book.ratings.build unless @book.ratings.blank?
     if @book.ratings.blank?
-      @book.ratings.build
+      @book.ratings.build(customer_id: @customer.id)
       @book.ratings
     end
     # byebug
@@ -54,6 +54,10 @@ class BooksController < ApplicationController
   private
   def set_book
     @book = Book.find(params[:id])
+  end
+
+  def set_customer
+    @customer = current_customer
   end
 
   def book_params

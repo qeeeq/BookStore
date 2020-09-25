@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:update, :show]
+  before_action :set_customer, only: [:show]
 
   def index
     @books = Book.all
@@ -41,9 +42,7 @@ class BooksController < ApplicationController
   # GET /books/1.json
 
   def show
-    byebug
     # @book.build_ratings unless @book.ratings
-    # @book.ratings.build unless @book.ratings.blank?
     if @book.ratings.blank?
       @book.ratings.build(customer_id: @customer.id)
       @book.ratings

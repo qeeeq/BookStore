@@ -55,35 +55,40 @@ class OrdersController < ApplicationController
   end
 
   def show
-    # byebug
-    if @current_step["step"] == "2"
-      if @order.credit_card.present? 
-        @order.build_billing_address unless @order.billing_address
-        @order.build_shipping_address unless @order.shipping_address
-      else
-        respond_to do |format|
-          format.html { redirect_to :action => "show", :step => 1 }
-          flash.now[:notice] = "noticenoticenotice"
-        end
-      end
-    end
+    byebug
+    # if condition
 
-    if @current_step["step"] == "3"
-      if @order.credit_card.blank?
-        respond_to do |format|
-          format.html { redirect_to :action => "show", :step => 1 }
+      if @current_step["step"] == "2"
+        if @order.credit_card.present? 
+          @order.build_billing_address unless @order.billing_address
+          @order.build_shipping_address unless @order.shipping_address
+        else
+          respond_to do |format|
+            format.html { redirect_to :action => "show", :step => 1 }
+            flash.now[:notice] = "noticenoticenotice"
+          end
         end
-      elsif @order.billing_address.blank? || @order.shipping_address.blank?
-        respond_to do |format|
-          format.html { redirect_to :action => "show", :step => 2 }
-        end
-      else
-        @order.update(status: :completed)
       end
-    end
-    if @current_step["step"] == "4"
-      @order.update(status: :shipped)
-    end
+
+      if @current_step["step"] == "3"
+        if @order.credit_card.blank?
+          respond_to do |format|
+            format.html { redirect_to :action => "show", :step => 1 }
+          end
+        elsif @order.billing_address.blank? || @order.shipping_address.blank?
+          respond_to do |format|
+            format.html { redirect_to :action => "show", :step => 2 }
+          end
+        else
+          @order.update(status: :completed)
+        end
+      end
+
+      if @current_step["step"] == "4"
+        @order.update(status: :shipped)
+      end
+
+    # end
     # OrderSteps.new(@order).call
   end
 

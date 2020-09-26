@@ -18,4 +18,10 @@ class Book < ApplicationRecord
 		"#{title}"
 	end
 
+	def average_rating
+		rating_av = Rating.average(:rating_number)
+		update(rating_number: rating_av)
+		return rating_av
+	end
+
 end

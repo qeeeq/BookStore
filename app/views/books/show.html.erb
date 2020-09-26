@@ -54,7 +54,6 @@
 
   <% end %>
 
-
   <%= simple_form_for(@book, method: :put) do |f| %>
     <%= f.fields_for :ratings do |rating| %>
       <%= rating.input :rating_number %>
@@ -65,3 +64,5 @@
 
 <%#byebug %>
 <%= link_to 'Back', books_path %>
+
+

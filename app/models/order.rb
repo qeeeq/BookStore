@@ -24,11 +24,12 @@ class Order < ApplicationRecord
 
 	def calculate_total
 		total_price = 0
+
 		order_items.each do |item|
 			result = item.quantity * item.book.price
 			total_price += result
 		end
+
 		update(total_price: total_price)
 	end
-	
 end

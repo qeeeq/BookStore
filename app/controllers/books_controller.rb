@@ -43,8 +43,11 @@ class BooksController < ApplicationController
 
   def show
     # @book.build_ratings unless @book.ratings
+    # 
+    # @book.ratings.build(customer_id: @customer.id)
+    
     if @book.ratings.blank?
-      @book.ratings.build(customer_id: @customer.id)
+      @book.ratings.build(customer_id: current_customer.id)
       @book.ratings
     end
     # byebug

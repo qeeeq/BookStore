@@ -27,5 +27,11 @@ class Customer < ApplicationRecord
 			@current_order ||= orders.find_or_create_by(status: :in_progress)
 		end
 	end
+	
+	# def current_book
+	# 	@current_book = Book.find(params[:id])
+	# end
 	# byebug
 end
+
+

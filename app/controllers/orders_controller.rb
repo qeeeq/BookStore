@@ -55,7 +55,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-    byebug
     # if condition
 
       if @current_step["step"] == "2"

@@ -39,24 +39,18 @@
     <table>
       <thead>
         <tr>
-          <th>Rating:</th>
+          <th>Rating: <%= @book.average_rating %></th>
         </tr>
       </thead>
-
-      <tbody>
-        <% @book.ratings.each do |rating| %>
-          <tr>
-            <td><%= rating.rating_number %></td></td>
-          </tr>
-        <% end %>
-      </tbody>
     </table>
 
   <% end %>
 
-  <%= simple_form_for(@book, method: :put) do |f| %>
+  <%= simple_form_for(@rating, method: @rating.persisted? ? :put : :post) do |f| %>
     <%= f.fields_for :ratings do |rating| %>
       <%= rating.input :rating_number %>
+      <%= rating.hidden_field :customer_id %>
+      <%= rating.hidden_field :book_id %>
     <% end %>
     <p><%= f.submit "Submit" %></p>
   <% end %>

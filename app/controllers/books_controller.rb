@@ -45,11 +45,10 @@ class BooksController < ApplicationController
     # @book.build_ratings unless @book.ratings
     # 
     # @book.ratings.build(customer_id: @customer.id)
-    
-    if @book.ratings.blank?
-      @book.ratings.build(customer_id: current_customer.id)
-      @book.ratings
-    end
+    @rating = Rating.find_or_initialize_by(book_id: @book.id, customer_id: current_customer.id)
+    #if @book.ratings.blank?
+    #  @book.ratings.build(customer_id: current_customer.id)
+    #end
     # byebug
   end
 
@@ -63,7 +62,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(ratings_attributes: [:id, :rating_number])
+    params.require(:book).permit(ratings_attributes: [:id, :rating_number, :customer_id])
   end
-
 end

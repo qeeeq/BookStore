@@ -14,5 +14,15 @@ ActiveAdmin.register Order do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  index do
+    column :id
+    column :total_price
+    column :completed_date
+    column :created_at
+    column :customer
+    column :credit_card
+    tag_column :status, interactive: true
+  end
   
 end

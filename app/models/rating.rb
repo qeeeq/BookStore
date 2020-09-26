@@ -3,9 +3,9 @@ class Rating < ApplicationRecord
 	belongs_to :book,  optional: true
 	belongs_to :customer, optional: true
 
-	after_save :calc_average_rating
+	# after_save :calc_average_rating
 
-	def calc_average_rating
-		book.average_rating
-	end
+	# def calc_average_rating
+		# book.average_rating
+	# end
 end

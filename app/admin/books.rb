@@ -22,19 +22,21 @@ ActiveAdmin.register Book do
   #   actions
   # end
 
-  # index do
-  #   column :title
-  #   column :price
-  #   column :books_in_stock
-  #   column :author
-  #   column :category
-  #   column :image do |book|
-  #     image_tag url_for(book.image), width: 150
-  #   end
-  #   column :description
-
-  #   actions
-  # end
+  index do
+    column :title
+    column :price
+    column :books_in_stock
+    column :author
+    column :category
+    column :image do |book|
+      image_tag url_for(book.image), width: 150 if book.image.attached?
+    end
+    column :description
+    column :average_ratings do |book|
+      book.average_rating
+    end
+    actions
+  end
 
   # show do
   #   attributes_table do

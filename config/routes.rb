@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :order_items #only: %i[create destroy]
   resources :billing_addresses
   resources :shipping_addresses
+  resources :ratings
   
 
   ActiveAdmin.routes(self)

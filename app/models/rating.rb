@@ -8,4 +8,9 @@ class Rating < ApplicationRecord
 	# def calc_average_rating
 		# book.average_rating
 	# end
+
+	def current_rating
+		# @rating = Rating.find_or_create_by(book_id: @book.id, customer_id: current_customer.id)
+		# @rating ||= ratings.find_or_create_by(book_id: @book.id, customer_id: current_customer.id)
+	end
 end

@@ -26,7 +26,7 @@ class BooksController < ApplicationController
 
   def update
     # byebug
-    if @book.update!(book_params)
+    if @book.update(book_params)
       respond_to do |format|
         format.html { redirect_to :action => "show" }                     
       end

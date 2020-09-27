@@ -30,28 +30,6 @@ class OrdersController < ApplicationController
         format.json { render json: @credit_card.errors, status: :unprocessable_entity }
       end
     end
-
-    # if @order.update(credit_card_params)
-    #   respond_to do |format|
-    #     format.html { redirect_to :action => "show", :step => 2 }                         
-    #   end
-    # else
-    #   respond_to do |format|
-    #     format.html { redirect_to :action => "show", :step => 1 }
-    #     format.json { render json: @credit_card.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-    # if @order.update(address_params)
-    #   respond_to do |format|
-    #     format.html { redirect_to :action => "show", :step => 3 }                         
-    #   end
-    # else
-    #   respond_to do |format|
-    #     format.html { redirect_to :action => "show", :step => 2 }
-    #     format.json { render json: @credit_card.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def show
@@ -81,10 +59,6 @@ class OrdersController < ApplicationController
         else
           @order.update(status: :completed)
         end
-      end
-
-      if @current_step["step"] == "4"
-        @order.update(status: :shipped)
       end
 
     # end

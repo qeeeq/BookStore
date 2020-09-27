@@ -46,7 +46,7 @@
 
   <% end %>
 
-  <%= simple_form_for(@rating, method: @rating.persisted? ? :put : :post) do |f| %>
+  <%= simple_form_for(@rating, method: @rating.present? ? :put : :post) do |f| %>
     <%= f.fields_for :ratings do |rating| %>
       <%= rating.input :rating_number %>
       <%= rating.hidden_field :customer_id %>

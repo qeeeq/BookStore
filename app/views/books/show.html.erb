@@ -32,32 +32,34 @@
 </p>
 
 
-  <% if @book.ratings.blank? %>
-    nil
-  <% else %>
+<% if @book.ratings.blank? %>
+  nil
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Rating: <%= @book.average_rating %></th>
+      </tr>
+    </thead>
+  </table>
+<% end %>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Rating: <%= @book.average_rating %></th>
-        </tr>
-      </thead>
-    </table>
-
-  <% end %>
-
-  <%= simple_form_for(@rating, method: @rating.present? ? :put : :post) do |f| %>
-    <%= f.fields_for :ratings do |rating| %>
-      <%= rating.input :rating_number %>
-      <%= rating.hidden_field :customer_id %>
-      <%= rating.hidden_field :book_id %>
-    <% end %>
-    <p><%= f.submit "Submit" %></p>
-  <% end %>
-</p>
-
+<%= simple_form_for(@rating, method: @rating.persisted? ? :put : :post) do |f| %>
+  <%= f.input :rating_number %>
+  <%= f.hidden_field :book_id %>
+  <%= f.submit "Submit" %>
+<% end %>
+  
 <%#byebug %>
 <%= link_to 'Back', books_path %>
+<!-- @rating, method: @rating.present? ? :put : :post -->
+
+
+
+
+
+
+
 
 
 <!-- condition ? true_expression : false_expression -->

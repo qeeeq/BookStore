@@ -19,7 +19,7 @@ Change billing address & shipping address:
   <%= f.fields_for :billing_address do |billing_address| %>
     <%= billing_address.input :bil_address %>
 	<% end %>
-    <%= f.fields_for :shipping_address do |shipping_address| %>
+  <%= f.fields_for :shipping_address do |shipping_address| %>
     <%= shipping_address.input :ship_address %>
   <% end %>
 	<p><%= f.submit "Submit" %></p>

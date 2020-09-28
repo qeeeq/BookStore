@@ -9,18 +9,10 @@ class BooksController < ApplicationController
     # @books = @books.where("title LIKE ?", "#{params[:q]}") if params[:q].present?
 
     if params[:q].present?
-      @books = Book.where("title LIKE ?", "%#{params[:q]}%")
+      # @books = Book.where("title LIKE ?", "%#{params[:q]}%")
+      @books = Book.joins(:author).where("title LIKE ? OR authors.firstname LIKE ?" , "%#{params[:q]}%", "%#{params[:q]}%")
     else
-      @books = Book.paginate(page: params[:page])
-    end
-
-    if params[:q].present?
-      # @books = Book.joins(:authors).where("title LIKE ? or name LIKE = ?" , "%#{params[:q]}%", "%#{params[:q]}%")
-      # @books = Book.where("title LIKE ?", "%#{:q}%").joins(:authors).where("name LIKE = ?", "%#{params[:q]}%")
-      # @books = Author.where("name LIKE = ?", "%#{params[:q]}%").joins(:books).where("title LIKE = ?", "%#{params[:q]}%")
-      # @books = Book.joins(:authors).where("title LIKE ?", "%#{params[:q]}%")
-    else
-      @books = Book.all
+      # @books = Book.paginate(page: params[:page])
     end
   end
 
@@ -42,17 +34,20 @@ class BooksController < ApplicationController
   # GET /books/1.json
 
   def show
+    # byebug
+    # @rating ||= Rating.find_or_initialize_by(book_id: @book.id, customer_id: current_customer.id)
+    @rating = current_customer.ratings.find_or_initialize_by(book_id: @book.id)
     # @book.build_ratings unless @book.ratings
     # 
     # @book.ratings.build(customer_id: @customer.id)
-    @rating = Rating.find_or_initialize_by(book_id: @book.id, customer_id: current_customer.id)
+
     #if @book.ratings.blank?
     #  @book.ratings.build(customer_id: current_customer.id)
     #end
-    # byebug
   end
 
   private
+  
   def set_book
     @book = Book.find(params[:id])
   end
@@ -62,6 +57,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(ratings_attributes: [:id, :rating_number, :customer_id])
+    params.require(:book).permit(ratings_attributes: [:rating_id, :rating_number, :customer_id])
   end
 end

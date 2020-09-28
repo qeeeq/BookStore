@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :billing_addresses
   resources :shipping_addresses
   resources :ratings
-  put '/ratings/:id', to: 'ratings#update', as: 'ratings_update'
+  # put '/ratings/:id', to: 'ratings#update', as: 'ratings_update'
   
 
   ActiveAdmin.routes(self)

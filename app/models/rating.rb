@@ -1,7 +1,7 @@
 class Rating < ApplicationRecord
 	validates :rating_number, :inclusion => 1..10, presence: true
-	belongs_to :book,  optional: true
-	belongs_to :customer, optional: true
+	belongs_to :book
+	belongs_to :customer
 
 	# after_save :calc_average_rating
 
@@ -9,8 +9,8 @@ class Rating < ApplicationRecord
 		# book.average_rating
 	# end
 
-	def current_rating
+	# def current_rating
 		# @rating = Rating.find_or_create_by(book_id: @book.id, customer_id: current_customer.id)
 		# @rating ||= ratings.find_or_create_by(book_id: @book.id, customer_id: current_customer.id)
-	end
+	# end
 end

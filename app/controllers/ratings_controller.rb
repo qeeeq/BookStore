@@ -1,6 +1,13 @@
 class RatingsController < ApplicationController
 	def create
-    Rating.create(rating_params.merge(customer_id: current_customer.id))
+    @rating = Rating.create(rating_params.merge(customer_id: current_customer.id))
+    # byebug
+    if @rating.persisted?
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_path) }                     
+    end
+     end 
+
 	end
 
 	def update

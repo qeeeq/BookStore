@@ -35,8 +35,10 @@ class BooksController < ApplicationController
 
   def show
     # byebug
+    if @customer
+      @rating = current_customer.ratings.find_or_initialize_by(book_id: @book.id)
+    end
     # @rating ||= Rating.find_or_initialize_by(book_id: @book.id, customer_id: current_customer.id)
-    @rating = current_customer.ratings.find_or_initialize_by(book_id: @book.id)
     # @book.build_ratings unless @book.ratings
     # 
     # @book.ratings.build(customer_id: @customer.id)

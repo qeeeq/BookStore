@@ -23,6 +23,7 @@ ActiveAdmin.register Order do
     column :customer
     column :credit_card
     tag_column :status, interactive: true
+    actions
   end
   
 end

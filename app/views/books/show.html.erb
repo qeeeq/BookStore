@@ -33,7 +33,7 @@
 
 
 <% if @book.ratings.blank? %>
-  nil
+  <p>Rating: nil</p>
 <% else %>
   <table>
     <thead>
@@ -43,11 +43,12 @@
     </thead>
   </table>
 <% end %>
-
-<%= simple_form_for(@rating, method: @rating.persisted? ? :put : :post) do |f| %>
-  <%= f.input :rating_number %>
-  <%= f.hidden_field :book_id %>
-  <%= f.submit "Submit" %>
+<% if @customer %>
+  <%= simple_form_for(@rating, method: @rating.persisted? ? :put : :post) do |f| %>
+    <%= f.input :rating_number %>
+    <%= f.hidden_field :book_id %>
+    <%= f.submit "Submit" %>
+  <% end %>
 <% end %>
   
 <%#byebug %>

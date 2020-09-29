@@ -31,7 +31,7 @@ ActiveAdmin.register Book do
     column :image do |book|
       image_tag url_for(book.image), width: 150 if book.image.attached?
     end
-    column :description
+    # column :description
     column :average_ratings do |book|
       book.average_rating
     end
